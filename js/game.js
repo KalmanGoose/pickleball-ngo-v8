@@ -189,6 +189,27 @@
             return found;
         }
 
+        // Align the grip with the existing hand and let its bone drive the paddle.
+        function attachRiggedPaddle(root) {
+            const socket = findBone(root, 'PaddleSocket.R');
+            if (!socket) return;
+            root.updateMatrixWorld(true);
+            const paddle = createCharacterPaddle();
+            let hand = null;
+            root.traverse(node => {
+                if (node.isMesh && /^Soft_articulated_hand_R/.test(node.name)) hand = node;
+            });
+            if (hand) {
+                const center = new THREE.Box3().setFromObject(hand).getCenter(new THREE.Vector3());
+                paddle.position.copy(socket.worldToLocal(center));
+            }
+            const socketRotation = socket.getWorldQuaternion(new THREE.Quaternion());
+            const rootRotation = root.getWorldQuaternion(new THREE.Quaternion());
+            const outwardTilt = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), 0.8);
+            paddle.quaternion.copy(socketRotation.invert().multiply(rootRotation).multiply(outwardTilt));
+            socket.add(paddle);
+        }
+
         function playOpponentAction(actionName, duration = 0.15) {
             const isSwan = (stage === 7);
             const activeData = isSwan ? riggedSwan : riggedGoose;
@@ -257,11 +278,7 @@
                     });
 
                     // 掛接球拍視覺到右翼手腕骨骼 (PaddleSocket.R)
-                    const socketR = findBone(root, 'PaddleSocket.R');
-                    if (socketR) {
-                        const paddleVisual = createCharacterPaddle(0xd9ff5c, 0x1f2937);
-                        socketR.add(paddleVisual);
-                    }
+                    attachRiggedPaddle(root);
 
                     const mixer = new THREE.AnimationMixer(model);
                     const actions = {};
@@ -319,11 +336,7 @@
                         }
                     });
 
-                    const socketR = findBone(root, 'PaddleSocket.R');
-                    if (socketR) {
-                        const paddleVisual = createCharacterPaddle(0xef4444, 0x450a0a);
-                        socketR.add(paddleVisual);
-                    }
+                    attachRiggedPaddle(root);
 
                     const mixer = new THREE.AnimationMixer(model);
                     const actions = {};
@@ -382,11 +395,7 @@
                     });
 
                     // 掛接玩家球拍視覺到右翼手腕骨骼 (PaddleSocket.R)
-                    const socketR = findBone(root, 'PaddleSocket.R');
-                    if (socketR) {
-                        const paddleVisual = createCharacterPaddle(0x2dd4bf, 0x0f766e);
-                        socketR.add(paddleVisual);
-                    }
+                    attachRiggedPaddle(root);
 
                     const mixer = new THREE.AnimationMixer(model);
                     const actions = {};
@@ -447,11 +456,7 @@
                         }
                     });
 
-                    const socketR = findBone(root, 'PaddleSocket.R');
-                    if (socketR) {
-                        const paddleVisual = createCharacterPaddle(0xf59e0b, 0x78350f);
-                        socketR.add(paddleVisual);
-                    }
+                    attachRiggedPaddle(root);
 
                     const mixer = new THREE.AnimationMixer(model);
                     const actions = {};
