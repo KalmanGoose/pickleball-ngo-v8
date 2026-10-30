@@ -195,6 +195,8 @@
             if (!socket) return;
             root.updateMatrixWorld(true);
             const paddle = createCharacterPaddle();
+            // Model space is smaller than the game paddle proxy; keep the racket visible.
+            paddle.scale.setScalar(3);
             let hand = null;
             root.traverse(node => {
                 if (node.isMesh && /^Soft_articulated_hand_R/.test(node.name)) hand = node;
