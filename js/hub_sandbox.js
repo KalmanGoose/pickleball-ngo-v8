@@ -195,6 +195,7 @@
     function updateActors(dt) {
         if (!domCache || !domCache.viewport) refreshDomCache();
         if (!domCache) return;
+        if (!domCache.actorSwan && !domCache.actorDuck1 && !domCache.actorDuck2) return;
 
         // ════ 1. 👑 黑天鵝與小鴨家族巡游 (全開闊水道無障礙巡弋) ════
         const nSwan = swanWaypoints.length;

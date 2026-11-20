@@ -262,7 +262,7 @@ function apiGet(qs) {
 
         let playerProfile = {
             playerId: null, avatar: '🪿', sidPrefix: '', deptCode: '',
-            department: '', grade: '', entryYear: '', nickname: '叫獸aka愛叫的野獸', sessionId: null
+            department: '', grade: '', entryYear: '', nickname: '興大匹克球手', sessionId: null
         };
         if (typeof window !== 'undefined') {
             window.playerProfile = playerProfile;
@@ -446,7 +446,7 @@ function apiGet(qs) {
                 playerProfile.department = saved.department || '';
                 playerProfile.grade = saved.grade || '';
                 playerProfile.entryYear = saved.entryYear || '';
-                playerProfile.nickname = saved.nickname || '叫獸aka愛叫的野獸';
+                playerProfile.nickname = saved.nickname || '興大匹克球手';
                 playerProfile.ig = saved.ig || '';
                 playerProfile.sessionId = 'S-' + Date.now().toString(36);
                 checkAdminAccess(playerProfile.nickname);

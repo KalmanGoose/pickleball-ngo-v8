@@ -5230,7 +5230,7 @@ function handleStageResize() {
 
             // 設置快速開局卡片內容並顯示
             document.getElementById('quick-avatar').innerText = playerProfile.avatar || '🪿';
-            document.getElementById('quick-nickname').innerText = savedIdentity.nickname || '叫獸aka愛叫的野獸';
+            document.getElementById('quick-nickname').innerText = savedIdentity.nickname || '興大匹克球手';
             document.getElementById('quick-dept').innerText = (savedIdentity.department || '') + (savedIdentity.sidPrefix ? ' · ' + savedIdentity.sidPrefix : '');
             document.getElementById('quick-pid').innerText = '裝置 Token: ' + (savedIdentity.playerId || getOrCreatePlayerId());
             document.getElementById('login-quick-box').style.display = 'block';
