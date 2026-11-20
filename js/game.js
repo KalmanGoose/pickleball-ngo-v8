@@ -2249,7 +2249,8 @@ function solveArc(fx, fy, fz, tx, tz, out, speedScale) {
             warnKitchen.material.opacity = 0; resetServe();
             document.body.classList.remove('demo-mode-active');
             dismissFingerTutorial(true);
-            toast('🎾 輪到你了！', '向上滑動推球發球');
+            toast('🎾 輪到你了！', '往上滑遠球、往下滑丁克球！');
+            if (typeof flushPendingFirstSwipeGuide === 'function') flushPendingFirstSwipeGuide();
         }
         function skipDemo() { if (demoOn) { clearTimers(); endDemo(); } }
         function replayDemo() { closePanel(); startDemo(stage); }

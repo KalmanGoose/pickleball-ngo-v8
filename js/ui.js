@@ -1877,27 +1877,31 @@ function cycleTeachLevelQuick() {
             dismissFirstPlayOnboarding();
         }
 
-        /* ── 👆 第一次進入闖關：虛擬手勢滑動教學 (嚴格等待入場動畫結束後才顯示，絕不重疊) ── */
-        const SWIPE_GUIDE_KEY = 'nchu_swipe_guide_seen';
+        /* ── 👆 第一次進入闖關：虛擬手勢滑動教學 (嚴格等待入場與示範動畫結束後才顯示，絕不重疊) ── */
+        const SWIPE_GUIDE_SESSION_KEY = 'nchu_swipe_guide_shown_session';
         let pendingFirstSwipeGuide = false;
 
         function shouldShowFirstSwipeGuide() {
             try {
-                if (localStorage.getItem(SWIPE_GUIDE_KEY) === '1') return false;
+                if (sessionStorage.getItem(SWIPE_GUIDE_SESSION_KEY) === '1') return false;
             } catch (e) {}
             if (typeof webcamActive !== 'undefined' && webcamActive) return false;
             if (typeof isWallPractice !== 'undefined' && isWallPractice) return false;
             return true;
+        }
+        function isIntroOrDemoRunning() {
+            const introEl = document.getElementById('court-intro');
+            const introVisible = (typeof courtEntrance !== 'undefined' && !!courtEntrance) || (introEl && introEl.style.display !== 'none');
+            const demoRunning = (typeof demoOn !== 'undefined' && !!demoOn);
+            return introVisible || demoRunning;
         }
         function queueFirstSwipeGuide() {
             if (!shouldShowFirstSwipeGuide()) {
                 pendingFirstSwipeGuide = false;
                 return;
             }
-            // 若入場動畫 (courtEntrance) 正在播放，排隊等它完全結束後再彈出教學
-            const introEl = document.getElementById('court-intro');
-            const introVisible = (typeof courtEntrance !== 'undefined' && !!courtEntrance) || (introEl && introEl.style.display !== 'none');
-            if (introVisible) {
+            // 若入場動畫 (courtEntrance) 或電腦示範 (demoOn) 正在播放，排隊等它們完全結束後再彈出教學
+            if (isIntroOrDemoRunning()) {
                 pendingFirstSwipeGuide = true;
             } else {
                 pendingFirstSwipeGuide = false;
@@ -1906,14 +1910,17 @@ function cycleTeachLevelQuick() {
         }
         function flushPendingFirstSwipeGuide() {
             if (!pendingFirstSwipeGuide) return;
+            if (isIntroOrDemoRunning()) return;
             pendingFirstSwipeGuide = false;
-            setTimeout(() => showFirstSwipeGuide(false), 180);
+            setTimeout(() => {
+                if (!isIntroOrDemoRunning()) showFirstSwipeGuide(false);
+            }, 180);
         }
         function showFirstSwipeGuide(force = false) {
             const el = document.getElementById('first-swipe-gesture-guide');
             if (!el) return;
             if (!force && !shouldShowFirstSwipeGuide()) return;
-            if (!force && typeof courtEntrance !== 'undefined' && courtEntrance) {
+            if (!force && isIntroOrDemoRunning()) {
                 pendingFirstSwipeGuide = true;
                 return;
             }
@@ -1924,7 +1931,7 @@ function cycleTeachLevelQuick() {
             pendingFirstSwipeGuide = false;
             const el = document.getElementById('first-swipe-gesture-guide');
             if (el) el.style.display = 'none';
-            try { localStorage.setItem(SWIPE_GUIDE_KEY, '1'); } catch (e) {}
+            try { sessionStorage.setItem(SWIPE_GUIDE_SESSION_KEY, '1'); } catch (e) {}
         }
 
         function replayFirstPlayOnboarding() {
