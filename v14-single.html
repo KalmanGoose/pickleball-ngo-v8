@@ -7808,6 +7808,44 @@ body.distant-hud-active #subbar-ai-btn {
 #profile-modal .profile-subtitle{color:#374151!important}
 #audio-modal .modal-card p{color:#cbd5e1}
 
+/* ═══ 🎭 選角彈窗內建 3D 可旋轉預覽台 ═══ */
+.char-picker-preview-stage{position:relative;margin:0 0 14px;padding:8px 10px 10px;border-radius:18px;background:radial-gradient(circle at 50% 42%,#ffffff 0%,#f0f5e6 68%,#e2ecd3 100%);border:1.5px solid #cbd7b7;box-shadow:inset 0 2px 8px rgba(41,77,55,0.06)}
+.char-picker-3d{width:100%;height:178px;cursor:grab;touch-action:pan-y;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#4a6350}
+.char-picker-3d:active{cursor:grabbing}
+.char-picker-3d canvas{display:block;width:100%;height:100%}
+.char-picker-3d-tip{margin-top:4px;text-align:center;font-size:11px;font-weight:700;color:#3d5a45;background:rgba(255,254,245,0.86);border:1px solid #d5dfc3;border-radius:999px;padding:3px 10px;display:inline-block}
+@media(max-width:400px){.char-picker-3d{height:152px}.character-choice{min-height:74px;padding:11px 10px}}
+
+/* ═══ 👆 第一次進入闖關：虛擬手勢教學 (上滑遠球 / 下滑丁克球) ═══ */
+#first-swipe-gesture-guide{z-index:20060;background:rgba(13,31,25,0.62);backdrop-filter:blur(6px)}
+.swipe-guide-card{width:min(94vw,430px)!important;padding:20px 18px!important;background:#fffef6!important;border:2px solid #c9d6b3!important;border-radius:22px!important;color:#111827!important;text-align:left!important;box-shadow:0 20px 50px rgba(0,0,0,0.45)!important}
+.swipe-guide-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+.swipe-guide-pill{display:inline-block;font-size:11px;font-weight:800;color:#1b5e20;background:#e8f5e9;border:1px solid #a5d6a7;padding:2px 9px;border-radius:999px;margin-bottom:4px}
+.swipe-guide-card h2{margin:0!important;font-size:20px!important;color:#1b4332!important}
+.swipe-guide-close{border:0;background:#e8ecd9;color:#1f2937;width:30px;height:30px;border-radius:999px;font-size:14px;font-weight:800;cursor:pointer;display:grid;place-items:center;flex-shrink:0}
+.swipe-guide-sub{margin:4px 0 14px!important;font-size:13px!important;line-height:1.5!important;color:#374151!important;font-weight:600}
+.swipe-guide-grid{display:grid;gap:10px;margin-bottom:14px}
+.swipe-demo-card{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;border:1.5px solid #d7e2c7;background:#ffffff}
+.swipe-demo-card.demo-long{background:linear-gradient(135deg,#fffbeb,#ffffff);border-color:#f6c445}
+.swipe-demo-card.demo-dink{background:linear-gradient(135deg,#f0f9ff,#ffffff);border-color:#7dd3fc}
+.swipe-demo-track{position:relative;width:54px;height:86px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:6px 0;flex-shrink:0;overflow:hidden}
+.swipe-demo-track.track-up{background:rgba(245,158,11,0.12);border:1.5px dashed #d97706}
+.swipe-demo-track.track-down{background:rgba(14,165,233,0.12);border:1.5px dashed #0284c7}
+.swipe-track-arrow{font-size:16px;line-height:1;z-index:1}
+.swipe-track-line{width:3px;flex:1;margin:3px 0;border-radius:99px;background:rgba(17,24,39,0.16)}
+.swipe-virtual-hand{position:absolute;left:50%;font-size:24px;line-height:1;z-index:2;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.28))}
+.swipe-virtual-hand.hand-up{bottom:6px;animation:virtualSwipeUp 1.5s cubic-bezier(.33,1,.68,1) infinite}
+.swipe-virtual-hand.hand-down{top:6px;animation:virtualSwipeDown 1.6s cubic-bezier(.33,1,.68,1) infinite}
+.swipe-demo-text{display:flex;flex-direction:column;gap:4px;min-width:0}
+.swipe-demo-text strong{font-size:15px;font-weight:900;color:#111827}
+.swipe-demo-text small{font-size:12.5px;line-height:1.45;color:#1f2937;font-weight:600}
+.swipe-zone-tag{display:inline-block;align-self:flex-start;margin-top:2px;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+.swipe-zone-tag.tag-long{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.swipe-zone-tag.tag-dink{background:#e0f2fe;color:#075985;border:1px solid #7dd3fc}
+.swipe-guide-start-btn{width:100%;margin-top:2px!important;background:#2e7d32!important;color:#ffffff!important;border:0!important;border-radius:14px!important;box-shadow:0 6px 16px rgba(46,125,50,0.3)!important}
+@keyframes virtualSwipeUp{0%{transform:translate(-50%,0) scale(1);opacity:0}18%{opacity:1}75%{transform:translate(-50%,-48px) scale(0.95);opacity:1}100%{transform:translate(-50%,-52px) scale(0.9);opacity:0}}
+@keyframes virtualSwipeDown{0%{transform:translate(-50%,0) scale(1);opacity:0}18%{opacity:1}75%{transform:translate(-50%,48px) scale(0.95);opacity:1}100%{transform:translate(-50%,52px) scale(0.9);opacity:0}}
+
 
     </style>
 </head>
@@ -9117,6 +9155,10 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
     <div id="char-picker-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="char-picker-title" style="display:none;" onclick="if(event.target===this)closeCharPickerModal()">
         <div class="modal-card character-picker-card">
             <div class="character-picker-heading"><div><h2 id="char-picker-title">今天想用誰上場？</h2><p>人偶、匹克鵝、黑天鵝，操作與能力相同。</p></div><button id="char-picker-close" type="button" onclick="closeCharPickerModal()" aria-label="關閉角色選擇">✕</button></div>
+            <div class="char-picker-preview-stage" aria-label="3D 角色旋轉預覽台">
+                <div id="char-picker-3d" class="char-picker-3d"></div>
+                <div class="char-picker-3d-tip">👆 左右拖曳轉動 360° 欣賞正面 · 點下方切換角色</div>
+            </div>
             <div class="character-choices">
                 <button type="button" id="char-card-human" class="character-choice" aria-pressed="false" onclick="selectPlayerCharacter('human')"><span class="character-icon">👦</span><span><strong>人偶</strong><small>熟悉的興大球員</small></span><span id="char-badge-human">選這位</span></button>
                 <button type="button" id="char-card-goose" class="character-choice" aria-pressed="false" onclick="selectPlayerCharacter('goose')"><span class="character-icon">🪿</span><span><strong>匹克鵝</strong><small>藍色帽 T 的湖畔夥伴</small></span><span id="char-badge-goose">選這位</span></button>
@@ -9124,6 +9166,47 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
             </div>
             <button type="button" id="char-picker-confirm" class="btn-main" disabled onclick="confirmPlayerCharacter()">先選一位角色</button>
             <p class="character-picker-note">進入後，也能從個人設定或手機選單更換。</p>
+        </div>
+    </div>
+
+    <!-- ══════ 👆 第一次進入闖關：虛擬手勢滑動教學 (#first-swipe-gesture-guide) ══════ -->
+    <div id="first-swipe-gesture-guide" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="swipe-guide-title" style="display:none;" onclick="if(event.target===this)closeFirstSwipeGuide()">
+        <div class="modal-card swipe-guide-card">
+            <div class="swipe-guide-head">
+                <div>
+                    <span class="swipe-guide-pill">🎾 闖關操作速成</span>
+                    <h2 id="swipe-guide-title">滑動手勢控球教學</h2>
+                </div>
+                <button type="button" class="swipe-guide-close" onclick="closeFirstSwipeGuide()" aria-label="關閉教學">✕</button>
+            </div>
+            <p class="swipe-guide-sub">在螢幕上按住滑動就能揮拍！上下方向決定球的遠近：</p>
+            <div class="swipe-guide-grid">
+                <div class="swipe-demo-card demo-long">
+                    <div class="swipe-demo-track track-up" aria-hidden="true">
+                        <span class="swipe-track-arrow">⬆️</span>
+                        <span class="swipe-track-line"></span>
+                        <span class="swipe-virtual-hand hand-up">👆</span>
+                    </div>
+                    <div class="swipe-demo-text">
+                        <strong>⬆️ 往上滑 ＝ 遠球</strong>
+                        <small>力道飽滿的長抽深球，直接飛向對手底線後場！</small>
+                        <span class="swipe-zone-tag tag-long">落點：對手底線深區</span>
+                    </div>
+                </div>
+                <div class="swipe-demo-card demo-dink">
+                    <div class="swipe-demo-track track-down" aria-hidden="true">
+                        <span class="swipe-track-line"></span>
+                        <span class="swipe-track-arrow">⬇️</span>
+                        <span class="swipe-virtual-hand hand-down">👆</span>
+                    </div>
+                    <div class="swipe-demo-text">
+                        <strong>⬇️ 往下滑 ＝ 丁克球 (Dink)</strong>
+                        <small>柔和輕短球，飛過球網後會比較短，精準掉在廚房區！</small>
+                        <span class="swipe-zone-tag tag-dink">落點：對手廚房區 (短球)</span>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn-main swipe-guide-start-btn" onclick="closeFirstSwipeGuide()">🎾 我學會了，開始闖關！</button>
         </div>
     </div>
 
@@ -15935,6 +16018,7 @@ function cycleTeachLevelQuick() {
             if (typeof switchStage === 'function') {
                 switchStage(hubSelectedStage || 1, { showEntrance: true });
             }
+            setTimeout(() => showFirstSwipeGuide(false), 380);
         }
 
         function selectHubStage(n) {
@@ -16109,6 +16193,29 @@ function cycleTeachLevelQuick() {
         let charPickerRequired = false;
         let pendingPlayerCharacter = null;
         let charPickerWasSuspended = false;
+        let charPickerPortrait = null;
+        let charPickerPreviewType = null;
+
+        function destroyCharPickerPreview() {
+            if (charPickerPortrait) {
+                charPickerPortrait.destroy();
+                charPickerPortrait = null;
+            }
+            charPickerPreviewType = null;
+        }
+        function mountCharPickerPreview(type, cheer = false) {
+            const target = ['human', 'goose', 'swan'].includes(type) ? type : 'goose';
+            const box = document.getElementById('char-picker-3d');
+            if (!box || typeof window.NGoCharacterPortrait !== 'function') return;
+            if (charPickerPortrait && charPickerPreviewType === target) {
+                if (cheer && charPickerPortrait.triggerCheer) charPickerPortrait.triggerCheer();
+                return;
+            }
+            destroyCharPickerPreview();
+            charPickerPreviewType = target;
+            charPickerPortrait = new window.NGoCharacterPortrait(box, { character: target, dance: false });
+            if (cheer && charPickerPortrait.triggerCheer) charPickerPortrait.triggerCheer();
+        }
 
         function beginCharacterEntry() {
             charPickerRequired = true;
@@ -16128,10 +16235,12 @@ function cycleTeachLevelQuick() {
             document.getElementById('char-picker-close').hidden = charPickerRequired;
             document.getElementById('char-picker-title').textContent = charPickerRequired ? '今天想用誰上場？' : '更換出戰角色';
             syncCharPickerUI();
+            mountCharPickerPreview(pendingPlayerCharacter || playerCharacter || 'goose', false);
             document.getElementById('char-card-goose').focus();
         }
         function closeCharPickerModal() {
             if (charPickerRequired) return;
+            destroyCharPickerPreview();
             const m = document.getElementById('char-picker-modal');
             if (m) m.style.display = 'none';
             if (!charPickerWasSuspended && typeof resume3DLoop === 'function') resume3DLoop();
@@ -16140,6 +16249,7 @@ function cycleTeachLevelQuick() {
             if (!['human', 'goose', 'swan'].includes(type)) return;
             pendingPlayerCharacter = type;
             syncCharPickerUI();
+            mountCharPickerPreview(type, true);
         }
         function confirmPlayerCharacter() {
             const type = pendingPlayerCharacter;
@@ -16333,8 +16443,27 @@ function cycleTeachLevelQuick() {
             dismissFirstPlayOnboarding();
         }
 
+        /* ── 👆 第一次進入闖關：虛擬手勢滑動教學 (上滑遠球 / 下滑丁克球) ── */
+        const SWIPE_GUIDE_KEY = 'nchu_swipe_guide_seen';
+        function showFirstSwipeGuide(force = false) {
+            const el = document.getElementById('first-swipe-gesture-guide');
+            if (!el) return;
+            if (!force) {
+                try {
+                    if (localStorage.getItem(SWIPE_GUIDE_KEY) === '1') return;
+                } catch (e) {}
+                if (typeof webcamActive !== 'undefined' && webcamActive) return;
+            }
+            el.style.display = 'flex';
+        }
+        function closeFirstSwipeGuide() {
+            const el = document.getElementById('first-swipe-gesture-guide');
+            if (el) el.style.display = 'none';
+            try { localStorage.setItem(SWIPE_GUIDE_KEY, '1'); } catch (e) {}
+        }
+
         function replayFirstPlayOnboarding() {
-            startFirstPlayOnboarding(true);
+            showFirstSwipeGuide(true);
         }
 
         /* ── 對牆特訓 3 連擊結算卡控制器 ── */
@@ -16441,6 +16570,7 @@ function cycleTeachLevelQuick() {
         function hubPlayNow() {
             closeModeHub();
             if (typeof switchStage === 'function') switchStage(1, { showEntrance: true });
+            setTimeout(() => showFirstSwipeGuide(false), 380);
         }
 
         function hubMotionPractice() {
@@ -16577,6 +16707,8 @@ function cycleTeachLevelQuick() {
         window.openCharPickerModal = openCharPickerModal;
         window.showHubDockGuide = showHubDockGuide;
         window.hideHubDockGuide = hideHubDockGuide;
+        window.showFirstSwipeGuide = showFirstSwipeGuide;
+        window.closeFirstSwipeGuide = closeFirstSwipeGuide;
         window.closeCharPickerModal = closeCharPickerModal;
         window.selectPlayerCharacter = selectPlayerCharacter;
         window.syncCharPickerUI = syncCharPickerUI;
@@ -21822,7 +21954,7 @@ function cycleTeachLevelQuick() {
             const headTex = acFaceTex();
             pHead = new THREE.Mesh(new THREE.SphereGeometry(0.25, 20, 20),
                 new THREE.MeshStandardMaterial({ map: headTex, roughness: 0.55 }));
-            pHead.position.y = 1.30; pHead.castShadow = true; pHumanMeshGrp.add(pHead);
+            pHead.position.y = 1.30; pHead.rotation.y = -Math.PI / 2; pHead.castShadow = true; pHumanMeshGrp.add(pHead);
 
             // 4. 經典遮陽帽 (Sun Visor Cap)
             pCap = new THREE.Group();
@@ -22871,7 +23003,8 @@ function solveArc(fx, fy, fz, tx, tz, out, speedScale) {
             const swipeDist = Math.hypot(sw.distX, sw.distY);
             const swipeSpeed = Math.hypot(sw.peakVx * 0.65, sw.peakVy);
             const gestureFresh = SWIPE.active || (SWIPE.lastStroke && now - SWIPE.lastStroke.time < 1000);
-            const downSwipe = !webcamActive && gestureFresh && sw.distY <= -32 && -sw.distY >= Math.abs(sw.distX) * 0.55;
+            const downSwipe = !webcamActive && gestureFresh && sw.distY <= -28 && -sw.distY >= Math.abs(sw.distX) * 0.55;
+            const upSwipe = !webcamActive && gestureFresh && sw.distY >= 28 && sw.distY >= Math.abs(sw.distX) * 0.55;
             const freshSwipe = !webcamActive && gestureFresh && (swipeDist >= 12 || swipeSpeed >= 75);
             const freshTouchSwipe = IS_MOBILE && freshSwipe;
             // 手機操作：來球進到可回擊區後，以有效滑動直接出拍，不要求畫面上的球拍碰到球。
@@ -23131,25 +23264,33 @@ function solveArc(fx, fy, fz, tx, tz, out, speedScale) {
                 announceReferee(spinSideTxt, Math.abs(spin) > 1.10 ? '⚠️ 甩球過猛，球偏出界外！' : '精準曲球已觸發', false);
             }
 
-            // ★ 依力道階梯與是否為合法凌空截擊 (volley) 解算落點與平快軌跡（不改動 b.y，避免球體位置瞬移）
+            // ★ 依滑動方向與力道解算落點：往下滑 = 廚房丁克球 (短球)、往上滑 = 底線遠球 (長抽)
             let tz = -3.5, spdScale = 1.0;
-            if (downSwipe || isWebcamSmash) {
+            if (isWebcamSmash) {
                 spin = 0; PH.spin = 0;
-                const isSmash = (overheadSmash || isWebcamSmash);
-                ch = Math.max(ch, isSmash ? 0.88 : 0.58);
-                tz = isSmash ? -3.35 : -4.65;
-                spdScale = isSmash ? 1.68 : 1.38;
+                ch = Math.max(ch, 0.88);
+                tz = -3.35;
+                spdScale = 1.68;
                 solveArc(b.x, b.y, b.z, tx, tz, PH.vel, spdScale);
-                if (isSmash) {
-                    popFloatText(b.x, b.y, b.z, 'SMASH!');
-                    toast('💥 凌空殺球！', isWebcamSmash ? '體感重扣極速殺球！' : (lateralSwipe ? (swipeDirection > 0 ? '右下殺球' : '左下殺球') : '正面殺球'));
-                    addShake(0.24);
-                    popRing(b.x, b.z, 2.8, 0xff4500);
-                    if (typeof S !== 'undefined' && S.thump) S.thump(1.6);
-                    isChanceBall = false;
-                } else {
-                    toast('💥 強力回球！', '低球或落地球以強力平抽回擊');
-                }
+                popFloatText(b.x, b.y, b.z, 'SMASH!');
+                toast('💥 凌空殺球！', '體感重扣極速殺球！');
+                addShake(0.24);
+                popRing(b.x, b.z, 2.8, 0xff4500);
+                if (typeof S !== 'undefined' && S.thump) S.thump(1.6);
+                isChanceBall = false;
+            } else if (downSwipe) {
+                // ⬇️ 往下滑 ＝ 丁克球 (Kitchen Dink)：柔和短球，過網後掉在對手廚房區
+                spin = 0; PH.spin = 0;
+                ch = 0.22;
+                const dinkRatio = THREE.MathUtils.clamp((-sw.distY - 28) / 140, 0, 1);
+                tz = -(1.12 + dinkRatio * 0.55); // -1.12m ~ -1.67m（精準落在對手廚房區內）
+                spdScale = volley ? 0.63 : 0.66;
+                solveArc(b.x, b.y, b.z, tx, tz, PH.vel, spdScale);
+                dinkRallyCount = Math.min(4, dinkRallyCount + 1);
+                popFloatText(b.x, b.y, b.z, 'DINK!');
+                toast('🪶 丁克球 (DINK)！', '往下滑打出柔和短球，精準掉在對手廚房區！');
+                popRing(b.x, b.z, 1.1, 0x38bdf8);
+                if (typeof S !== 'undefined' && S.pop) S.pop(0.55);
             } else if (isChanceBall && (ch >= 0.22 || b.y > 0.70 || swipeDist > 20 || swipeSpeed > 180)) {
                 // ★ 機會球凌空扣殺：抓到浮高破綻，強制轉為極速暴扣 (SMASH WINNER)！
                 ch = Math.max(ch, 0.85);
@@ -23172,6 +23313,13 @@ function solveArc(fx, fy, fz, tx, tz, out, speedScale) {
                 addShake(0.35);
                 if (typeof S !== 'undefined' && S.thump) S.thump(1.8);
                 if (typeof S !== 'undefined' && S.pop) S.pop(1.5);
+            } else if (upSwipe) {
+                // ⬆️ 往上滑 ＝ 遠球 (Deep Drive)：力道飽滿飛向對手底線深區
+                const upRatio = THREE.MathUtils.clamp((sw.distY - 28) / 150, 0, 1);
+                ch = Math.max(ch, 0.56 + upRatio * 0.36);
+                tz = -(4.35 + upRatio * 1.45); // -4.35m ~ -5.80m（底線深球）
+                spdScale = volley ? (1.38 + upRatio * 0.32) : (1.24 + upRatio * 0.34);
+                solveArc(b.x, b.y, b.z, tx, tz, PH.vel, spdScale);
             } else if (isPassiveBlock) {
                 // 第 0 級：手指完全沒動 / 被動減力碰球 (Passive Block)
                 const incomingEnergy = Math.hypot(PH.vel.x, PH.vel.y, PH.vel.z);
@@ -23677,17 +23825,18 @@ function solveArc(fx, fy, fz, tx, tz, out, speedScale) {
             pPad.getWorldPosition(padW);
             if (playerCharacter === 'human') limb(pArm, _b.set(0.2, 1.16, 0.02), _a.set(padX, padY - 0.17, -0.24));
 
-            // 🎭 三位角色正面互動動畫 (發球待機微轉側正面、過關/慶祝完整面向鏡頭，不影響 pPad 物理判定)
+            // 🎭 三位角色正面互動動畫 (發球待機微轉側正面、過關勝利面向前方旋轉鏡頭，不影響 pPad 物理判定)
             const nowSec = performance.now() * 0.001;
             const moveSpd = Math.hypot(playerVel.x, playerVel.z);
             const isVictoryPose = (state === 'CLEARED' && victoryCamTime > 0);
             const isServePeek = (state === 'SERVE_READY' && server === 'PLAYER' && moveSpd < 0.15 && !isPlayerSwinging && !webcamActive);
+            // 勝利時鏡頭會繞到玩家前方 (-Z) 拍攝正面，因此所有角色維持朝 -Z (rotation.y = Math.PI) 正對鏡頭微笑！
             const wantFrontHumanY = isVictoryPose
-                ? (Math.PI + Math.sin(nowSec * 3.4) * 0.18)
-                : (isServePeek ? (1.12 + Math.sin(nowSec * 2.2) * 0.12) : 0);
+                ? (Math.PI + Math.sin(nowSec * 3.4) * 0.16)
+                : (isServePeek ? (1.05 + Math.sin(nowSec * 2.2) * 0.12) : 0);
             const wantFrontRigY = isVictoryPose
-                ? (Math.sin(nowSec * 3.4) * 0.2)
-                : (isServePeek ? (Math.PI - 1.12 + Math.sin(nowSec * 2.2) * 0.12) : Math.PI);
+                ? (Math.PI + Math.sin(nowSec * 3.4) * 0.16)
+                : (isServePeek ? (Math.PI - 1.05 + Math.sin(nowSec * 2.2) * 0.12) : Math.PI);
             const rotRate = Math.min(1, dt * (isServePeek || isVictoryPose ? 6.5 : 14));
 
             if (pHumanMeshGrp) {
@@ -24971,10 +25120,38 @@ function updateGuides(dt) {
             const cw = canvas.width = 600;
             const ch = canvas.height = 420;
 
-            // 1. 擷取 WebGL 3D 畫面 (Aspect-Ratio Cover 裁切，杜絕直式手機橫向擠壓變形)
+            // 1. 擷取 WebGL 3D 畫面（強制擺好正面特寫機位，確保人偶/匹克鵝/黑天鵝 100% 拍到可愛正面！）
             try {
                 if (ren && ren.domElement) {
+                    const savedCamPos = cam.position.clone();
+                    const savedCamQuat = cam.quaternion.clone();
+                    const savedCamFov = cam.fov;
+                    const savedPGrpRotY = pGrp ? pGrp.rotation.y : 0;
+                    const savedHumanRotY = pHumanMeshGrp ? pHumanMeshGrp.rotation.y : 0;
+                    const savedGooseRotY = (playerRiggedGoose && playerRiggedGoose.root) ? playerRiggedGoose.root.rotation.y : Math.PI;
+                    const savedSwanRotY = (playerRiggedSwan && playerRiggedSwan.root) ? playerRiggedSwan.root.rotation.y : Math.PI;
+
+                    // 將角色與鏡頭對準正面微笑合影角度（鏡頭位於玩家前方 -Z，角色朝向 -Z 正對鏡頭）
+                    if (pGrp) pGrp.rotation.y = 0;
+                    if (pHumanMeshGrp) pHumanMeshGrp.rotation.y = Math.PI;
+                    if (playerRiggedGoose && playerRiggedGoose.root) playerRiggedGoose.root.rotation.y = Math.PI;
+                    if (playerRiggedSwan && playerRiggedSwan.root) playerRiggedSwan.root.rotation.y = Math.PI;
+                    cam.fov = 44;
+                    cam.updateProjectionMatrix();
+                    cam.position.set(pPos.x + 0.18, 1.42, pPos.z - 2.30);
+                    cam.lookAt(pPos.x, 1.02, pPos.z);
+
                     ren.render(scene, cam);
+
+                    // 拍攝完畢立即還原鏡頭與角色朝向
+                    cam.position.copy(savedCamPos);
+                    cam.quaternion.copy(savedCamQuat);
+                    cam.fov = savedCamFov;
+                    cam.updateProjectionMatrix();
+                    if (pGrp) pGrp.rotation.y = savedPGrpRotY;
+                    if (pHumanMeshGrp) pHumanMeshGrp.rotation.y = savedHumanRotY;
+                    if (playerRiggedGoose && playerRiggedGoose.root) playerRiggedGoose.root.rotation.y = savedGooseRotY;
+                    if (playerRiggedSwan && playerRiggedSwan.root) playerRiggedSwan.root.rotation.y = savedSwanRotY;
                     const sw = ren.domElement.width, sh = ren.domElement.height;
                     const tar = cw / ch, sar = sw / sh;
                     let sx = 0, sy = 0, scw = sw, sch = sh;

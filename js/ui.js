@@ -1451,6 +1451,7 @@ function cycleTeachLevelQuick() {
             if (typeof switchStage === 'function') {
                 switchStage(hubSelectedStage || 1, { showEntrance: true });
             }
+            setTimeout(() => showFirstSwipeGuide(false), 380);
         }
 
         function selectHubStage(n) {
@@ -1625,6 +1626,29 @@ function cycleTeachLevelQuick() {
         let charPickerRequired = false;
         let pendingPlayerCharacter = null;
         let charPickerWasSuspended = false;
+        let charPickerPortrait = null;
+        let charPickerPreviewType = null;
+
+        function destroyCharPickerPreview() {
+            if (charPickerPortrait) {
+                charPickerPortrait.destroy();
+                charPickerPortrait = null;
+            }
+            charPickerPreviewType = null;
+        }
+        function mountCharPickerPreview(type, cheer = false) {
+            const target = ['human', 'goose', 'swan'].includes(type) ? type : 'goose';
+            const box = document.getElementById('char-picker-3d');
+            if (!box || typeof window.NGoCharacterPortrait !== 'function') return;
+            if (charPickerPortrait && charPickerPreviewType === target) {
+                if (cheer && charPickerPortrait.triggerCheer) charPickerPortrait.triggerCheer();
+                return;
+            }
+            destroyCharPickerPreview();
+            charPickerPreviewType = target;
+            charPickerPortrait = new window.NGoCharacterPortrait(box, { character: target, dance: false });
+            if (cheer && charPickerPortrait.triggerCheer) charPickerPortrait.triggerCheer();
+        }
 
         function beginCharacterEntry() {
             charPickerRequired = true;
@@ -1644,10 +1668,12 @@ function cycleTeachLevelQuick() {
             document.getElementById('char-picker-close').hidden = charPickerRequired;
             document.getElementById('char-picker-title').textContent = charPickerRequired ? '今天想用誰上場？' : '更換出戰角色';
             syncCharPickerUI();
+            mountCharPickerPreview(pendingPlayerCharacter || playerCharacter || 'goose', false);
             document.getElementById('char-card-goose').focus();
         }
         function closeCharPickerModal() {
             if (charPickerRequired) return;
+            destroyCharPickerPreview();
             const m = document.getElementById('char-picker-modal');
             if (m) m.style.display = 'none';
             if (!charPickerWasSuspended && typeof resume3DLoop === 'function') resume3DLoop();
@@ -1656,6 +1682,7 @@ function cycleTeachLevelQuick() {
             if (!['human', 'goose', 'swan'].includes(type)) return;
             pendingPlayerCharacter = type;
             syncCharPickerUI();
+            mountCharPickerPreview(type, true);
         }
         function confirmPlayerCharacter() {
             const type = pendingPlayerCharacter;
@@ -1849,8 +1876,27 @@ function cycleTeachLevelQuick() {
             dismissFirstPlayOnboarding();
         }
 
+        /* ── 👆 第一次進入闖關：虛擬手勢滑動教學 (上滑遠球 / 下滑丁克球) ── */
+        const SWIPE_GUIDE_KEY = 'nchu_swipe_guide_seen';
+        function showFirstSwipeGuide(force = false) {
+            const el = document.getElementById('first-swipe-gesture-guide');
+            if (!el) return;
+            if (!force) {
+                try {
+                    if (localStorage.getItem(SWIPE_GUIDE_KEY) === '1') return;
+                } catch (e) {}
+                if (typeof webcamActive !== 'undefined' && webcamActive) return;
+            }
+            el.style.display = 'flex';
+        }
+        function closeFirstSwipeGuide() {
+            const el = document.getElementById('first-swipe-gesture-guide');
+            if (el) el.style.display = 'none';
+            try { localStorage.setItem(SWIPE_GUIDE_KEY, '1'); } catch (e) {}
+        }
+
         function replayFirstPlayOnboarding() {
-            startFirstPlayOnboarding(true);
+            showFirstSwipeGuide(true);
         }
 
         /* ── 對牆特訓 3 連擊結算卡控制器 ── */
@@ -1957,6 +2003,7 @@ function cycleTeachLevelQuick() {
         function hubPlayNow() {
             closeModeHub();
             if (typeof switchStage === 'function') switchStage(1, { showEntrance: true });
+            setTimeout(() => showFirstSwipeGuide(false), 380);
         }
 
         function hubMotionPractice() {
@@ -2093,6 +2140,8 @@ function cycleTeachLevelQuick() {
         window.openCharPickerModal = openCharPickerModal;
         window.showHubDockGuide = showHubDockGuide;
         window.hideHubDockGuide = hideHubDockGuide;
+        window.showFirstSwipeGuide = showFirstSwipeGuide;
+        window.closeFirstSwipeGuide = closeFirstSwipeGuide;
         window.closeCharPickerModal = closeCharPickerModal;
         window.selectPlayerCharacter = selectPlayerCharacter;
         window.syncCharPickerUI = syncCharPickerUI;

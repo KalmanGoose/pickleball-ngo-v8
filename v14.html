@@ -1378,6 +1378,10 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
     <div id="char-picker-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="char-picker-title" style="display:none;" onclick="if(event.target===this)closeCharPickerModal()">
         <div class="modal-card character-picker-card">
             <div class="character-picker-heading"><div><h2 id="char-picker-title">今天想用誰上場？</h2><p>人偶、匹克鵝、黑天鵝，操作與能力相同。</p></div><button id="char-picker-close" type="button" onclick="closeCharPickerModal()" aria-label="關閉角色選擇">✕</button></div>
+            <div class="char-picker-preview-stage" aria-label="3D 角色旋轉預覽台">
+                <div id="char-picker-3d" class="char-picker-3d"></div>
+                <div class="char-picker-3d-tip">👆 左右拖曳轉動 360° 欣賞正面 · 點下方切換角色</div>
+            </div>
             <div class="character-choices">
                 <button type="button" id="char-card-human" class="character-choice" aria-pressed="false" onclick="selectPlayerCharacter('human')"><span class="character-icon">👦</span><span><strong>人偶</strong><small>熟悉的興大球員</small></span><span id="char-badge-human">選這位</span></button>
                 <button type="button" id="char-card-goose" class="character-choice" aria-pressed="false" onclick="selectPlayerCharacter('goose')"><span class="character-icon">🪿</span><span><strong>匹克鵝</strong><small>藍色帽 T 的湖畔夥伴</small></span><span id="char-badge-goose">選這位</span></button>
@@ -1385,6 +1389,47 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
             </div>
             <button type="button" id="char-picker-confirm" class="btn-main" disabled onclick="confirmPlayerCharacter()">先選一位角色</button>
             <p class="character-picker-note">進入後，也能從個人設定或手機選單更換。</p>
+        </div>
+    </div>
+
+    <!-- ══════ 👆 第一次進入闖關：虛擬手勢滑動教學 (#first-swipe-gesture-guide) ══════ -->
+    <div id="first-swipe-gesture-guide" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="swipe-guide-title" style="display:none;" onclick="if(event.target===this)closeFirstSwipeGuide()">
+        <div class="modal-card swipe-guide-card">
+            <div class="swipe-guide-head">
+                <div>
+                    <span class="swipe-guide-pill">🎾 闖關操作速成</span>
+                    <h2 id="swipe-guide-title">滑動手勢控球教學</h2>
+                </div>
+                <button type="button" class="swipe-guide-close" onclick="closeFirstSwipeGuide()" aria-label="關閉教學">✕</button>
+            </div>
+            <p class="swipe-guide-sub">在螢幕上按住滑動就能揮拍！上下方向決定球的遠近：</p>
+            <div class="swipe-guide-grid">
+                <div class="swipe-demo-card demo-long">
+                    <div class="swipe-demo-track track-up" aria-hidden="true">
+                        <span class="swipe-track-arrow">⬆️</span>
+                        <span class="swipe-track-line"></span>
+                        <span class="swipe-virtual-hand hand-up">👆</span>
+                    </div>
+                    <div class="swipe-demo-text">
+                        <strong>⬆️ 往上滑 ＝ 遠球</strong>
+                        <small>力道飽滿的長抽深球，直接飛向對手底線後場！</small>
+                        <span class="swipe-zone-tag tag-long">落點：對手底線深區</span>
+                    </div>
+                </div>
+                <div class="swipe-demo-card demo-dink">
+                    <div class="swipe-demo-track track-down" aria-hidden="true">
+                        <span class="swipe-track-line"></span>
+                        <span class="swipe-track-arrow">⬇️</span>
+                        <span class="swipe-virtual-hand hand-down">👆</span>
+                    </div>
+                    <div class="swipe-demo-text">
+                        <strong>⬇️ 往下滑 ＝ 丁克球 (Dink)</strong>
+                        <small>柔和輕短球，飛過球網後會比較短，精準掉在廚房區！</small>
+                        <span class="swipe-zone-tag tag-dink">落點：對手廚房區 (短球)</span>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn-main swipe-guide-start-btn" onclick="closeFirstSwipeGuide()">🎾 我學會了，開始闖關！</button>
         </div>
     </div>
 

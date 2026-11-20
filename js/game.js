@@ -1710,7 +1710,7 @@
             const headTex = acFaceTex();
             pHead = new THREE.Mesh(new THREE.SphereGeometry(0.25, 20, 20),
                 new THREE.MeshStandardMaterial({ map: headTex, roughness: 0.55 }));
-            pHead.position.y = 1.30; pHead.castShadow = true; pHumanMeshGrp.add(pHead);
+            pHead.position.y = 1.30; pHead.rotation.y = -Math.PI / 2; pHead.castShadow = true; pHumanMeshGrp.add(pHead);
 
             // 4. 經典遮陽帽 (Sun Visor Cap)
             pCap = new THREE.Group();
@@ -2759,7 +2759,8 @@ function solveArc(fx, fy, fz, tx, tz, out, speedScale) {
             const swipeDist = Math.hypot(sw.distX, sw.distY);
             const swipeSpeed = Math.hypot(sw.peakVx * 0.65, sw.peakVy);
             const gestureFresh = SWIPE.active || (SWIPE.lastStroke && now - SWIPE.lastStroke.time < 1000);
-            const downSwipe = !webcamActive && gestureFresh && sw.distY <= -32 && -sw.distY >= Math.abs(sw.distX) * 0.55;
+            const downSwipe = !webcamActive && gestureFresh && sw.distY <= -28 && -sw.distY >= Math.abs(sw.distX) * 0.55;
+            const upSwipe = !webcamActive && gestureFresh && sw.distY >= 28 && sw.distY >= Math.abs(sw.distX) * 0.55;
             const freshSwipe = !webcamActive && gestureFresh && (swipeDist >= 12 || swipeSpeed >= 75);
             const freshTouchSwipe = IS_MOBILE && freshSwipe;
             // 手機操作：來球進到可回擊區後，以有效滑動直接出拍，不要求畫面上的球拍碰到球。
@@ -3019,25 +3020,33 @@ function solveArc(fx, fy, fz, tx, tz, out, speedScale) {
                 announceReferee(spinSideTxt, Math.abs(spin) > 1.10 ? '⚠️ 甩球過猛，球偏出界外！' : '精準曲球已觸發', false);
             }
 
-            // ★ 依力道階梯與是否為合法凌空截擊 (volley) 解算落點與平快軌跡（不改動 b.y，避免球體位置瞬移）
+            // ★ 依滑動方向與力道解算落點：往下滑 = 廚房丁克球 (短球)、往上滑 = 底線遠球 (長抽)
             let tz = -3.5, spdScale = 1.0;
-            if (downSwipe || isWebcamSmash) {
+            if (isWebcamSmash) {
                 spin = 0; PH.spin = 0;
-                const isSmash = (overheadSmash || isWebcamSmash);
-                ch = Math.max(ch, isSmash ? 0.88 : 0.58);
-                tz = isSmash ? -3.35 : -4.65;
-                spdScale = isSmash ? 1.68 : 1.38;
+                ch = Math.max(ch, 0.88);
+                tz = -3.35;
+                spdScale = 1.68;
                 solveArc(b.x, b.y, b.z, tx, tz, PH.vel, spdScale);
-                if (isSmash) {
-                    popFloatText(b.x, b.y, b.z, 'SMASH!');
-                    toast('💥 凌空殺球！', isWebcamSmash ? '體感重扣極速殺球！' : (lateralSwipe ? (swipeDirection > 0 ? '右下殺球' : '左下殺球') : '正面殺球'));
-                    addShake(0.24);
-                    popRing(b.x, b.z, 2.8, 0xff4500);
-                    if (typeof S !== 'undefined' && S.thump) S.thump(1.6);
-                    isChanceBall = false;
-                } else {
-                    toast('💥 強力回球！', '低球或落地球以強力平抽回擊');
-                }
+                popFloatText(b.x, b.y, b.z, 'SMASH!');
+                toast('💥 凌空殺球！', '體感重扣極速殺球！');
+                addShake(0.24);
+                popRing(b.x, b.z, 2.8, 0xff4500);
+                if (typeof S !== 'undefined' && S.thump) S.thump(1.6);
+                isChanceBall = false;
+            } else if (downSwipe) {
+                // ⬇️ 往下滑 ＝ 丁克球 (Kitchen Dink)：柔和短球，過網後掉在對手廚房區
+                spin = 0; PH.spin = 0;
+                ch = 0.22;
+                const dinkRatio = THREE.MathUtils.clamp((-sw.distY - 28) / 140, 0, 1);
+                tz = -(1.12 + dinkRatio * 0.55); // -1.12m ~ -1.67m（精準落在對手廚房區內）
+                spdScale = volley ? 0.63 : 0.66;
+                solveArc(b.x, b.y, b.z, tx, tz, PH.vel, spdScale);
+                dinkRallyCount = Math.min(4, dinkRallyCount + 1);
+                popFloatText(b.x, b.y, b.z, 'DINK!');
+                toast('🪶 丁克球 (DINK)！', '往下滑打出柔和短球，精準掉在對手廚房區！');
+                popRing(b.x, b.z, 1.1, 0x38bdf8);
+                if (typeof S !== 'undefined' && S.pop) S.pop(0.55);
             } else if (isChanceBall && (ch >= 0.22 || b.y > 0.70 || swipeDist > 20 || swipeSpeed > 180)) {
                 // ★ 機會球凌空扣殺：抓到浮高破綻，強制轉為極速暴扣 (SMASH WINNER)！
                 ch = Math.max(ch, 0.85);
@@ -3060,6 +3069,13 @@ function solveArc(fx, fy, fz, tx, tz, out, speedScale) {
                 addShake(0.35);
                 if (typeof S !== 'undefined' && S.thump) S.thump(1.8);
                 if (typeof S !== 'undefined' && S.pop) S.pop(1.5);
+            } else if (upSwipe) {
+                // ⬆️ 往上滑 ＝ 遠球 (Deep Drive)：力道飽滿飛向對手底線深區
+                const upRatio = THREE.MathUtils.clamp((sw.distY - 28) / 150, 0, 1);
+                ch = Math.max(ch, 0.56 + upRatio * 0.36);
+                tz = -(4.35 + upRatio * 1.45); // -4.35m ~ -5.80m（底線深球）
+                spdScale = volley ? (1.38 + upRatio * 0.32) : (1.24 + upRatio * 0.34);
+                solveArc(b.x, b.y, b.z, tx, tz, PH.vel, spdScale);
             } else if (isPassiveBlock) {
                 // 第 0 級：手指完全沒動 / 被動減力碰球 (Passive Block)
                 const incomingEnergy = Math.hypot(PH.vel.x, PH.vel.y, PH.vel.z);
@@ -3565,17 +3581,18 @@ function solveArc(fx, fy, fz, tx, tz, out, speedScale) {
             pPad.getWorldPosition(padW);
             if (playerCharacter === 'human') limb(pArm, _b.set(0.2, 1.16, 0.02), _a.set(padX, padY - 0.17, -0.24));
 
-            // 🎭 三位角色正面互動動畫 (發球待機微轉側正面、過關/慶祝完整面向鏡頭，不影響 pPad 物理判定)
+            // 🎭 三位角色正面互動動畫 (發球待機微轉側正面、過關勝利面向前方旋轉鏡頭，不影響 pPad 物理判定)
             const nowSec = performance.now() * 0.001;
             const moveSpd = Math.hypot(playerVel.x, playerVel.z);
             const isVictoryPose = (state === 'CLEARED' && victoryCamTime > 0);
             const isServePeek = (state === 'SERVE_READY' && server === 'PLAYER' && moveSpd < 0.15 && !isPlayerSwinging && !webcamActive);
+            // 勝利時鏡頭會繞到玩家前方 (-Z) 拍攝正面，因此所有角色維持朝 -Z (rotation.y = Math.PI) 正對鏡頭微笑！
             const wantFrontHumanY = isVictoryPose
-                ? (Math.PI + Math.sin(nowSec * 3.4) * 0.18)
-                : (isServePeek ? (1.12 + Math.sin(nowSec * 2.2) * 0.12) : 0);
+                ? (Math.PI + Math.sin(nowSec * 3.4) * 0.16)
+                : (isServePeek ? (1.05 + Math.sin(nowSec * 2.2) * 0.12) : 0);
             const wantFrontRigY = isVictoryPose
-                ? (Math.sin(nowSec * 3.4) * 0.2)
-                : (isServePeek ? (Math.PI - 1.12 + Math.sin(nowSec * 2.2) * 0.12) : Math.PI);
+                ? (Math.PI + Math.sin(nowSec * 3.4) * 0.16)
+                : (isServePeek ? (Math.PI - 1.05 + Math.sin(nowSec * 2.2) * 0.12) : Math.PI);
             const rotRate = Math.min(1, dt * (isServePeek || isVictoryPose ? 6.5 : 14));
 
             if (pHumanMeshGrp) {
@@ -4859,10 +4876,38 @@ function updateGuides(dt) {
             const cw = canvas.width = 600;
             const ch = canvas.height = 420;
 
-            // 1. 擷取 WebGL 3D 畫面 (Aspect-Ratio Cover 裁切，杜絕直式手機橫向擠壓變形)
+            // 1. 擷取 WebGL 3D 畫面（強制擺好正面特寫機位，確保人偶/匹克鵝/黑天鵝 100% 拍到可愛正面！）
             try {
                 if (ren && ren.domElement) {
+                    const savedCamPos = cam.position.clone();
+                    const savedCamQuat = cam.quaternion.clone();
+                    const savedCamFov = cam.fov;
+                    const savedPGrpRotY = pGrp ? pGrp.rotation.y : 0;
+                    const savedHumanRotY = pHumanMeshGrp ? pHumanMeshGrp.rotation.y : 0;
+                    const savedGooseRotY = (playerRiggedGoose && playerRiggedGoose.root) ? playerRiggedGoose.root.rotation.y : Math.PI;
+                    const savedSwanRotY = (playerRiggedSwan && playerRiggedSwan.root) ? playerRiggedSwan.root.rotation.y : Math.PI;
+
+                    // 將角色與鏡頭對準正面微笑合影角度（鏡頭位於玩家前方 -Z，角色朝向 -Z 正對鏡頭）
+                    if (pGrp) pGrp.rotation.y = 0;
+                    if (pHumanMeshGrp) pHumanMeshGrp.rotation.y = Math.PI;
+                    if (playerRiggedGoose && playerRiggedGoose.root) playerRiggedGoose.root.rotation.y = Math.PI;
+                    if (playerRiggedSwan && playerRiggedSwan.root) playerRiggedSwan.root.rotation.y = Math.PI;
+                    cam.fov = 44;
+                    cam.updateProjectionMatrix();
+                    cam.position.set(pPos.x + 0.18, 1.42, pPos.z - 2.30);
+                    cam.lookAt(pPos.x, 1.02, pPos.z);
+
                     ren.render(scene, cam);
+
+                    // 拍攝完畢立即還原鏡頭與角色朝向
+                    cam.position.copy(savedCamPos);
+                    cam.quaternion.copy(savedCamQuat);
+                    cam.fov = savedCamFov;
+                    cam.updateProjectionMatrix();
+                    if (pGrp) pGrp.rotation.y = savedPGrpRotY;
+                    if (pHumanMeshGrp) pHumanMeshGrp.rotation.y = savedHumanRotY;
+                    if (playerRiggedGoose && playerRiggedGoose.root) playerRiggedGoose.root.rotation.y = savedGooseRotY;
+                    if (playerRiggedSwan && playerRiggedSwan.root) playerRiggedSwan.root.rotation.y = savedSwanRotY;
                     const sw = ren.domElement.width, sh = ren.domElement.height;
                     const tar = cw / ch, sar = sw / sh;
                     let sx = 0, sy = 0, scw = sw, sch = sh;

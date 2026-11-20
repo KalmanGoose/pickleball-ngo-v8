@@ -4203,3 +4203,41 @@
 #community-modal p{color:#111827!important}
 #profile-modal .profile-subtitle{color:#374151!important}
 #audio-modal .modal-card p{color:#cbd5e1}
+
+/* ═══ 🎭 選角彈窗內建 3D 可旋轉預覽台 ═══ */
+.char-picker-preview-stage{position:relative;margin:0 0 14px;padding:8px 10px 10px;border-radius:18px;background:radial-gradient(circle at 50% 42%,#ffffff 0%,#f0f5e6 68%,#e2ecd3 100%);border:1.5px solid #cbd7b7;box-shadow:inset 0 2px 8px rgba(41,77,55,0.06)}
+.char-picker-3d{width:100%;height:178px;cursor:grab;touch-action:pan-y;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#4a6350}
+.char-picker-3d:active{cursor:grabbing}
+.char-picker-3d canvas{display:block;width:100%;height:100%}
+.char-picker-3d-tip{margin-top:4px;text-align:center;font-size:11px;font-weight:700;color:#3d5a45;background:rgba(255,254,245,0.86);border:1px solid #d5dfc3;border-radius:999px;padding:3px 10px;display:inline-block}
+@media(max-width:400px){.char-picker-3d{height:152px}.character-choice{min-height:74px;padding:11px 10px}}
+
+/* ═══ 👆 第一次進入闖關：虛擬手勢教學 (上滑遠球 / 下滑丁克球) ═══ */
+#first-swipe-gesture-guide{z-index:20060;background:rgba(13,31,25,0.62);backdrop-filter:blur(6px)}
+.swipe-guide-card{width:min(94vw,430px)!important;padding:20px 18px!important;background:#fffef6!important;border:2px solid #c9d6b3!important;border-radius:22px!important;color:#111827!important;text-align:left!important;box-shadow:0 20px 50px rgba(0,0,0,0.45)!important}
+.swipe-guide-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+.swipe-guide-pill{display:inline-block;font-size:11px;font-weight:800;color:#1b5e20;background:#e8f5e9;border:1px solid #a5d6a7;padding:2px 9px;border-radius:999px;margin-bottom:4px}
+.swipe-guide-card h2{margin:0!important;font-size:20px!important;color:#1b4332!important}
+.swipe-guide-close{border:0;background:#e8ecd9;color:#1f2937;width:30px;height:30px;border-radius:999px;font-size:14px;font-weight:800;cursor:pointer;display:grid;place-items:center;flex-shrink:0}
+.swipe-guide-sub{margin:4px 0 14px!important;font-size:13px!important;line-height:1.5!important;color:#374151!important;font-weight:600}
+.swipe-guide-grid{display:grid;gap:10px;margin-bottom:14px}
+.swipe-demo-card{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;border:1.5px solid #d7e2c7;background:#ffffff}
+.swipe-demo-card.demo-long{background:linear-gradient(135deg,#fffbeb,#ffffff);border-color:#f6c445}
+.swipe-demo-card.demo-dink{background:linear-gradient(135deg,#f0f9ff,#ffffff);border-color:#7dd3fc}
+.swipe-demo-track{position:relative;width:54px;height:86px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:6px 0;flex-shrink:0;overflow:hidden}
+.swipe-demo-track.track-up{background:rgba(245,158,11,0.12);border:1.5px dashed #d97706}
+.swipe-demo-track.track-down{background:rgba(14,165,233,0.12);border:1.5px dashed #0284c7}
+.swipe-track-arrow{font-size:16px;line-height:1;z-index:1}
+.swipe-track-line{width:3px;flex:1;margin:3px 0;border-radius:99px;background:rgba(17,24,39,0.16)}
+.swipe-virtual-hand{position:absolute;left:50%;font-size:24px;line-height:1;z-index:2;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.28))}
+.swipe-virtual-hand.hand-up{bottom:6px;animation:virtualSwipeUp 1.5s cubic-bezier(.33,1,.68,1) infinite}
+.swipe-virtual-hand.hand-down{top:6px;animation:virtualSwipeDown 1.6s cubic-bezier(.33,1,.68,1) infinite}
+.swipe-demo-text{display:flex;flex-direction:column;gap:4px;min-width:0}
+.swipe-demo-text strong{font-size:15px;font-weight:900;color:#111827}
+.swipe-demo-text small{font-size:12.5px;line-height:1.45;color:#1f2937;font-weight:600}
+.swipe-zone-tag{display:inline-block;align-self:flex-start;margin-top:2px;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+.swipe-zone-tag.tag-long{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.swipe-zone-tag.tag-dink{background:#e0f2fe;color:#075985;border:1px solid #7dd3fc}
+.swipe-guide-start-btn{width:100%;margin-top:2px!important;background:#2e7d32!important;color:#ffffff!important;border:0!important;border-radius:14px!important;box-shadow:0 6px 16px rgba(46,125,50,0.3)!important}
+@keyframes virtualSwipeUp{0%{transform:translate(-50%,0) scale(1);opacity:0}18%{opacity:1}75%{transform:translate(-50%,-48px) scale(0.95);opacity:1}100%{transform:translate(-50%,-52px) scale(0.9);opacity:0}}
+@keyframes virtualSwipeDown{0%{transform:translate(-50%,0) scale(1);opacity:0}18%{opacity:1}75%{transform:translate(-50%,48px) scale(0.95);opacity:1}100%{transform:translate(-50%,52px) scale(0.9);opacity:0}}
