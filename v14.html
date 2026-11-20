@@ -95,10 +95,18 @@
 
             <!-- 完整填寫表單 (首次登入或點擊修改) -->
             <div id="login-full-form">
-                <div style="margin-bottom:12px;">
-                    <label
-                        style="display:block;font-size:10px;font-weight:700;color:var(--dim);margin-bottom:6px;text-transform:uppercase;">選擇頭像</label>
-                    <div class="avatar-grid" id="login-avatar-grid"></div>
+                <div class="avatar-drawer" id="login-avatar-drawer" style="margin-bottom:12px;">
+                    <button type="button" class="avatar-drawer-toggle" id="login-avatar-toggle" aria-expanded="false" aria-controls="login-avatar-panel" onclick="toggleAvatarDrawer('login')">
+                        <span class="avatar-drawer-preview" id="login-avatar-preview">🪿</span>
+                        <span class="avatar-drawer-meta">
+                            <span class="avatar-drawer-title">選擇頭像</span>
+                            <span class="avatar-drawer-sub">點擊展開頭像抽屜</span>
+                        </span>
+                        <span class="avatar-drawer-chevron" aria-hidden="true">▾</span>
+                    </button>
+                    <div class="avatar-drawer-body" id="login-avatar-panel">
+                        <div class="avatar-grid" id="login-avatar-grid"></div>
+                    </div>
                 </div>
 
                 <div class="input-group">
@@ -207,9 +215,19 @@
                     <div>您目前是以訪客身分進行遊玩！請在下方輸入中興學號前 7 碼並選擇系所，即可<strong>一鍵升級為正式學生帳號</strong>，登錄全校系級排行！</div>
                 </div>
 
-                <div style="margin-bottom:12px;">
+                <div class="avatar-drawer" id="edit-avatar-drawer" style="margin-bottom:12px;">
                     <label class="profile-field-label">代表頭像</label>
-                    <div class="avatar-grid" id="edit-avatar-grid"></div>
+                    <button type="button" class="avatar-drawer-toggle" id="edit-avatar-toggle" aria-expanded="false" aria-controls="edit-avatar-panel" onclick="toggleAvatarDrawer('edit')">
+                        <span class="avatar-drawer-preview" id="edit-avatar-preview">🪿</span>
+                        <span class="avatar-drawer-meta">
+                            <span class="avatar-drawer-title">更換代表頭像</span>
+                            <span class="avatar-drawer-sub">點擊展開頭像抽屜</span>
+                        </span>
+                        <span class="avatar-drawer-chevron" aria-hidden="true">▾</span>
+                    </button>
+                    <div class="avatar-drawer-body" id="edit-avatar-panel">
+                        <div class="avatar-grid" id="edit-avatar-grid"></div>
+                    </div>
                 </div>
 
                 <!-- 學號前 7 碼輸入框 -->
@@ -1450,6 +1468,16 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
 
                 <button type="button" id="lake-goose-dancer" aria-label="湖畔匹克鵝閃身步" onclick="toast('🪿 湖畔閃身步', '跟著匹克鵝側步、轉肩、擺手！')"><span id="lake-goose-portrait"></span><span class="lake-goose-label">匹克鵝 · 閃身步</span></button>
 
+                <!-- 👆 新手導覽：角色指引開啟「闖關歷險」 -->
+                <div id="hub-dock-guide-bubble" class="hub-dock-guide-bubble" hidden role="status" aria-live="polite">
+                    <div class="hub-guide-head">
+                        <span class="hub-guide-badge"><span id="hub-guide-char-icon">🪿</span> <strong id="hub-guide-char-name">匹克鵝</strong></span>
+                        <button type="button" class="hub-guide-close" onclick="hideHubDockGuide()" aria-label="關閉指引">✕</button>
+                    </div>
+                    <p class="hub-guide-msg" id="hub-guide-msg">選好上場啦！跟著手指頭點「🎾 闖關歷險」開始 5 大關卡吧！</p>
+                    <button type="button" class="hub-guide-cta" onclick="openDockPicker()">🎾 立即開啟闖關歷險 →</button>
+                </div>
+
                 <!-- 🗺️ 互動點標 Pins (依據中興湖實景嚴格方位) -->
                 <!-- 1. 北側（上方）：行政大樓 (紅瓦中式宮殿屋頂) -->
                 <div class="map-pin" id="pin-admin" style="top:15%; left:50%;" onclick="openProfileModal()" title="行政大樓 · 島民中心與學號綁定">
@@ -1485,6 +1513,10 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
                 <div class="map-pin" id="pin-dock" style="top:41%; left:74%;" onclick="openDockPicker()" title="水上闖關歷險 · 5 大關卡">
                     <span class="map-pin-glow" style="width:48px;height:48px;background:radial-gradient(circle, rgba(249,115,22,0.65) 0%, rgba(249,115,22,0) 70%);"></span>
                     <div class="map-pin-pill pill-dock">🎾 闖關歷險</div>
+                    <div id="hub-dock-guide-finger" class="hub-dock-guide-finger" hidden aria-hidden="true">
+                        <span class="guide-finger-emoji">👆</span>
+                        <span class="guide-finger-tag">點這裡開始！</span>
+                    </div>
                 </div>
 
                 <!-- 6.5. 湖邊設施: 體感特訓入口 (體感匹克球) -->

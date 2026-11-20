@@ -1359,6 +1359,7 @@ function cycleTeachLevelQuick() {
         }
 
         function closeModeHub() {
+            hideHubDockGuide();
             const hub = document.getElementById('mode-hub-overlay');
             if (hub) hub.style.display = 'none';
             closeDockPicker();
@@ -1369,8 +1370,42 @@ function cycleTeachLevelQuick() {
             if (typeof resume3DLoop === 'function') resume3DLoop();
         }
 
+        /* 👆 中興湖新手導覽：手指頭與角色指引開啟「闖關歷險」 */
+        function showHubDockGuide(charType) {
+            const type = charType || (typeof playerCharacter !== 'undefined' ? playerCharacter : 'goose');
+            const guideCopy = {
+                human: { icon: '👦', name: '興大球員', msg: '準備上場啦！跟著手指頭點「🎾 闖關歷險」開啟 5 大關卡吧！' },
+                goose: { icon: '🪿', name: '匹克鵝', msg: '嘎！選好上場啦！跟著手指頭點「🎾 闖關歷險」開始挑戰吧！' },
+                swan: { icon: '🦢', name: '黑天鵝', msg: '冠軍出擊！跟著手指頭點「🎾 闖關歷險」，稱霸中興湖球場！' }
+            };
+            const copy = guideCopy[type] || guideCopy.goose;
+            const iconEl = document.getElementById('hub-guide-char-icon');
+            const nameEl = document.getElementById('hub-guide-char-name');
+            const msgEl = document.getElementById('hub-guide-msg');
+            if (iconEl) iconEl.textContent = copy.icon;
+            if (nameEl) nameEl.textContent = copy.name;
+            if (msgEl) msgEl.textContent = copy.msg;
+
+            const bubble = document.getElementById('hub-dock-guide-bubble');
+            const finger = document.getElementById('hub-dock-guide-finger');
+            const dockPin = document.getElementById('pin-dock');
+            if (bubble) bubble.hidden = false;
+            if (finger) finger.hidden = false;
+            if (dockPin) dockPin.classList.add('guide-highlight');
+        }
+
+        function hideHubDockGuide() {
+            const bubble = document.getElementById('hub-dock-guide-bubble');
+            const finger = document.getElementById('hub-dock-guide-finger');
+            const dockPin = document.getElementById('pin-dock');
+            if (bubble) bubble.hidden = true;
+            if (finger) finger.hidden = true;
+            if (dockPin) dockPin.classList.remove('guide-highlight');
+        }
+
         /* 🍃 水上小碼頭 5 大關卡歷險抽屜控制器 (Dock Level Picker Drawer) */
         function openDockPicker() {
+            hideHubDockGuide();
             const drawer = document.getElementById('dock-picker-drawer');
             if (drawer) {
                 drawer.style.display = 'block';
@@ -1632,6 +1667,7 @@ function cycleTeachLevelQuick() {
             if (entering) {
                 switchStage(1, { skipAutoDemo: true });
                 openModeHub();
+                showHubDockGuide(type);
             }
         }
         function characterChoiceReady(type) {
@@ -2055,6 +2091,8 @@ function cycleTeachLevelQuick() {
         window.beginCharacterEntry = beginCharacterEntry;
         window.confirmPlayerCharacter = confirmPlayerCharacter;
         window.openCharPickerModal = openCharPickerModal;
+        window.showHubDockGuide = showHubDockGuide;
+        window.hideHubDockGuide = hideHubDockGuide;
         window.closeCharPickerModal = closeCharPickerModal;
         window.selectPlayerCharacter = selectPlayerCharacter;
         window.syncCharPickerUI = syncCharPickerUI;
