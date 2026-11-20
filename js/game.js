@@ -559,7 +559,10 @@
             if (flyMesh) flyMesh.rotation.z = 0;
             if (ready) {
                 if (sceneState.playDemo) startDemo(stage);
-                else resetServe();
+                else {
+                    resetServe();
+                    if (typeof flushPendingFirstSwipeGuide === 'function') flushPendingFirstSwipeGuide();
+                }
             }
         }
         function skipCourtEntrance() { stopCourtEntrance(true); }

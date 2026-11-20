@@ -7828,14 +7828,16 @@ body.distant-hud-active #subbar-ai-btn {
 .swipe-demo-card{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;border:1.5px solid #d7e2c7;background:#ffffff}
 .swipe-demo-card.demo-long{background:linear-gradient(135deg,#fffbeb,#ffffff);border-color:#f6c445}
 .swipe-demo-card.demo-dink{background:linear-gradient(135deg,#f0f9ff,#ffffff);border-color:#7dd3fc}
-.swipe-demo-track{position:relative;width:54px;height:86px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:6px 0;flex-shrink:0;overflow:hidden}
-.swipe-demo-track.track-up{background:rgba(245,158,11,0.12);border:1.5px dashed #d97706}
-.swipe-demo-track.track-down{background:rgba(14,165,233,0.12);border:1.5px dashed #0284c7}
-.swipe-track-arrow{font-size:16px;line-height:1;z-index:1}
-.swipe-track-line{width:3px;flex:1;margin:3px 0;border-radius:99px;background:rgba(17,24,39,0.16)}
-.swipe-virtual-hand{position:absolute;left:50%;font-size:24px;line-height:1;z-index:2;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.28))}
-.swipe-virtual-hand.hand-up{bottom:6px;animation:virtualSwipeUp 1.5s cubic-bezier(.33,1,.68,1) infinite}
-.swipe-virtual-hand.hand-down{top:6px;animation:virtualSwipeDown 1.6s cubic-bezier(.33,1,.68,1) infinite}
+.swipe-demo-track{position:relative;width:54px;height:94px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:8px 0;flex-shrink:0;overflow:hidden}
+.swipe-demo-track.track-up{background:linear-gradient(180deg,rgba(245,158,11,0.22),rgba(245,158,11,0.06));border:1.5px dashed #d97706}
+.swipe-demo-track.track-down{background:linear-gradient(180deg,rgba(14,165,233,0.06),rgba(14,165,233,0.22));border:1.5px dashed #0284c7}
+.swipe-track-head{font-size:11px;font-weight:900;line-height:1;opacity:.65;z-index:1}
+.swipe-demo-track.track-up .swipe-track-head{color:#b45309}
+.swipe-demo-track.track-down .swipe-track-head{color:#0369a1}
+.swipe-track-rail{width:3px;flex:1;margin:4px 0;border-radius:99px;background:rgba(17,24,39,0.14)}
+.swipe-virtual-hand{position:absolute;left:50%;font-size:22px;line-height:1;z-index:2;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.28))}
+.swipe-virtual-hand.hand-up{bottom:10px;animation:virtualSwipeUp 1.55s cubic-bezier(.33,1,.68,1) infinite}
+.swipe-virtual-hand.hand-down{top:10px;animation:virtualSwipeDown 1.65s cubic-bezier(.33,1,.68,1) infinite}
 .swipe-demo-text{display:flex;flex-direction:column;gap:4px;min-width:0}
 .swipe-demo-text strong{font-size:15px;font-weight:900;color:#111827}
 .swipe-demo-text small{font-size:12.5px;line-height:1.45;color:#1f2937;font-weight:600}
@@ -7843,8 +7845,8 @@ body.distant-hud-active #subbar-ai-btn {
 .swipe-zone-tag.tag-long{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
 .swipe-zone-tag.tag-dink{background:#e0f2fe;color:#075985;border:1px solid #7dd3fc}
 .swipe-guide-start-btn{width:100%;margin-top:2px!important;background:#2e7d32!important;color:#ffffff!important;border:0!important;border-radius:14px!important;box-shadow:0 6px 16px rgba(46,125,50,0.3)!important}
-@keyframes virtualSwipeUp{0%{transform:translate(-50%,0) scale(1);opacity:0}18%{opacity:1}75%{transform:translate(-50%,-48px) scale(0.95);opacity:1}100%{transform:translate(-50%,-52px) scale(0.9);opacity:0}}
-@keyframes virtualSwipeDown{0%{transform:translate(-50%,0) scale(1);opacity:0}18%{opacity:1}75%{transform:translate(-50%,48px) scale(0.95);opacity:1}100%{transform:translate(-50%,52px) scale(0.9);opacity:0}}
+@keyframes virtualSwipeUp{0%{transform:translate(-50%,0) scale(1);opacity:0}18%{opacity:1}76%{transform:translate(-50%,-36px) scale(0.95);opacity:1}100%{transform:translate(-50%,-40px) scale(0.9);opacity:0}}
+@keyframes virtualSwipeDown{0%{transform:translate(-50%,0) scale(1);opacity:0}18%{opacity:1}76%{transform:translate(-50%,36px) scale(0.95);opacity:1}100%{transform:translate(-50%,40px) scale(0.9);opacity:0}}
 
 
     </style>
@@ -9183,8 +9185,8 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
             <div class="swipe-guide-grid">
                 <div class="swipe-demo-card demo-long">
                     <div class="swipe-demo-track track-up" aria-hidden="true">
-                        <span class="swipe-track-arrow">⬆️</span>
-                        <span class="swipe-track-line"></span>
+                        <span class="swipe-track-head">▲</span>
+                        <span class="swipe-track-rail"></span>
                         <span class="swipe-virtual-hand hand-up">👆</span>
                     </div>
                     <div class="swipe-demo-text">
@@ -9195,8 +9197,8 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
                 </div>
                 <div class="swipe-demo-card demo-dink">
                     <div class="swipe-demo-track track-down" aria-hidden="true">
-                        <span class="swipe-track-line"></span>
-                        <span class="swipe-track-arrow">⬇️</span>
+                        <span class="swipe-track-rail"></span>
+                        <span class="swipe-track-head">▼</span>
                         <span class="swipe-virtual-hand hand-down">👆</span>
                     </div>
                     <div class="swipe-demo-text">
@@ -15547,7 +15549,8 @@ function cycleTeachLevelQuick() {
 /* ═══════ 彈窗控制器、HUD 面板自由拖曳與卡片縮放手柄 ═══════ */
         const MODAL_IDS = ['login-overlay', 'profile-modal', 'audio-modal', 'tech-modal', 'social-modal',
             'audit-modal', 'social-card-modal', 'mock-chat-modal', 'rules-modal', 'item-cards-modal',
-            'first-play-onboarding-modal', 'practice-settlement-modal', 'char-picker-modal'];
+            'first-play-onboarding-modal', 'practice-settlement-modal', 'char-picker-modal',
+            'first-swipe-gesture-guide'];
         window.MODAL_IDS = MODAL_IDS;
         function isTypingTarget(e) {
             const t = e.target;
@@ -16018,7 +16021,7 @@ function cycleTeachLevelQuick() {
             if (typeof switchStage === 'function') {
                 switchStage(hubSelectedStage || 1, { showEntrance: true });
             }
-            setTimeout(() => showFirstSwipeGuide(false), 380);
+            queueFirstSwipeGuide();
         }
 
         function selectHubStage(n) {
@@ -16443,20 +16446,51 @@ function cycleTeachLevelQuick() {
             dismissFirstPlayOnboarding();
         }
 
-        /* ── 👆 第一次進入闖關：虛擬手勢滑動教學 (上滑遠球 / 下滑丁克球) ── */
+        /* ── 👆 第一次進入闖關：虛擬手勢滑動教學 (嚴格等待入場動畫結束後才顯示，絕不重疊) ── */
         const SWIPE_GUIDE_KEY = 'nchu_swipe_guide_seen';
+        let pendingFirstSwipeGuide = false;
+
+        function shouldShowFirstSwipeGuide() {
+            try {
+                if (localStorage.getItem(SWIPE_GUIDE_KEY) === '1') return false;
+            } catch (e) {}
+            if (typeof webcamActive !== 'undefined' && webcamActive) return false;
+            if (typeof isWallPractice !== 'undefined' && isWallPractice) return false;
+            return true;
+        }
+        function queueFirstSwipeGuide() {
+            if (!shouldShowFirstSwipeGuide()) {
+                pendingFirstSwipeGuide = false;
+                return;
+            }
+            // 若入場動畫 (courtEntrance) 正在播放，排隊等它完全結束後再彈出教學
+            const introEl = document.getElementById('court-intro');
+            const introVisible = (typeof courtEntrance !== 'undefined' && !!courtEntrance) || (introEl && introEl.style.display !== 'none');
+            if (introVisible) {
+                pendingFirstSwipeGuide = true;
+            } else {
+                pendingFirstSwipeGuide = false;
+                showFirstSwipeGuide(false);
+            }
+        }
+        function flushPendingFirstSwipeGuide() {
+            if (!pendingFirstSwipeGuide) return;
+            pendingFirstSwipeGuide = false;
+            setTimeout(() => showFirstSwipeGuide(false), 180);
+        }
         function showFirstSwipeGuide(force = false) {
             const el = document.getElementById('first-swipe-gesture-guide');
             if (!el) return;
-            if (!force) {
-                try {
-                    if (localStorage.getItem(SWIPE_GUIDE_KEY) === '1') return;
-                } catch (e) {}
-                if (typeof webcamActive !== 'undefined' && webcamActive) return;
+            if (!force && !shouldShowFirstSwipeGuide()) return;
+            if (!force && typeof courtEntrance !== 'undefined' && courtEntrance) {
+                pendingFirstSwipeGuide = true;
+                return;
             }
+            if (typeof clearKeys === 'function') clearKeys();
             el.style.display = 'flex';
         }
         function closeFirstSwipeGuide() {
+            pendingFirstSwipeGuide = false;
             const el = document.getElementById('first-swipe-gesture-guide');
             if (el) el.style.display = 'none';
             try { localStorage.setItem(SWIPE_GUIDE_KEY, '1'); } catch (e) {}
@@ -16570,7 +16604,7 @@ function cycleTeachLevelQuick() {
         function hubPlayNow() {
             closeModeHub();
             if (typeof switchStage === 'function') switchStage(1, { showEntrance: true });
-            setTimeout(() => showFirstSwipeGuide(false), 380);
+            queueFirstSwipeGuide();
         }
 
         function hubMotionPractice() {
@@ -16709,6 +16743,8 @@ function cycleTeachLevelQuick() {
         window.hideHubDockGuide = hideHubDockGuide;
         window.showFirstSwipeGuide = showFirstSwipeGuide;
         window.closeFirstSwipeGuide = closeFirstSwipeGuide;
+        window.queueFirstSwipeGuide = queueFirstSwipeGuide;
+        window.flushPendingFirstSwipeGuide = flushPendingFirstSwipeGuide;
         window.closeCharPickerModal = closeCharPickerModal;
         window.selectPlayerCharacter = selectPlayerCharacter;
         window.syncCharPickerUI = syncCharPickerUI;
@@ -20803,7 +20839,10 @@ function cycleTeachLevelQuick() {
             if (flyMesh) flyMesh.rotation.z = 0;
             if (ready) {
                 if (sceneState.playDemo) startDemo(stage);
-                else resetServe();
+                else {
+                    resetServe();
+                    if (typeof flushPendingFirstSwipeGuide === 'function') flushPendingFirstSwipeGuide();
+                }
             }
         }
         function skipCourtEntrance() { stopCourtEntrance(true); }

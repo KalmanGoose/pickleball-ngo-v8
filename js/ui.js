@@ -980,7 +980,8 @@ function cycleTeachLevelQuick() {
 /* ═══════ 彈窗控制器、HUD 面板自由拖曳與卡片縮放手柄 ═══════ */
         const MODAL_IDS = ['login-overlay', 'profile-modal', 'audio-modal', 'tech-modal', 'social-modal',
             'audit-modal', 'social-card-modal', 'mock-chat-modal', 'rules-modal', 'item-cards-modal',
-            'first-play-onboarding-modal', 'practice-settlement-modal', 'char-picker-modal'];
+            'first-play-onboarding-modal', 'practice-settlement-modal', 'char-picker-modal',
+            'first-swipe-gesture-guide'];
         window.MODAL_IDS = MODAL_IDS;
         function isTypingTarget(e) {
             const t = e.target;
@@ -1451,7 +1452,7 @@ function cycleTeachLevelQuick() {
             if (typeof switchStage === 'function') {
                 switchStage(hubSelectedStage || 1, { showEntrance: true });
             }
-            setTimeout(() => showFirstSwipeGuide(false), 380);
+            queueFirstSwipeGuide();
         }
 
         function selectHubStage(n) {
@@ -1876,20 +1877,51 @@ function cycleTeachLevelQuick() {
             dismissFirstPlayOnboarding();
         }
 
-        /* ── 👆 第一次進入闖關：虛擬手勢滑動教學 (上滑遠球 / 下滑丁克球) ── */
+        /* ── 👆 第一次進入闖關：虛擬手勢滑動教學 (嚴格等待入場動畫結束後才顯示，絕不重疊) ── */
         const SWIPE_GUIDE_KEY = 'nchu_swipe_guide_seen';
+        let pendingFirstSwipeGuide = false;
+
+        function shouldShowFirstSwipeGuide() {
+            try {
+                if (localStorage.getItem(SWIPE_GUIDE_KEY) === '1') return false;
+            } catch (e) {}
+            if (typeof webcamActive !== 'undefined' && webcamActive) return false;
+            if (typeof isWallPractice !== 'undefined' && isWallPractice) return false;
+            return true;
+        }
+        function queueFirstSwipeGuide() {
+            if (!shouldShowFirstSwipeGuide()) {
+                pendingFirstSwipeGuide = false;
+                return;
+            }
+            // 若入場動畫 (courtEntrance) 正在播放，排隊等它完全結束後再彈出教學
+            const introEl = document.getElementById('court-intro');
+            const introVisible = (typeof courtEntrance !== 'undefined' && !!courtEntrance) || (introEl && introEl.style.display !== 'none');
+            if (introVisible) {
+                pendingFirstSwipeGuide = true;
+            } else {
+                pendingFirstSwipeGuide = false;
+                showFirstSwipeGuide(false);
+            }
+        }
+        function flushPendingFirstSwipeGuide() {
+            if (!pendingFirstSwipeGuide) return;
+            pendingFirstSwipeGuide = false;
+            setTimeout(() => showFirstSwipeGuide(false), 180);
+        }
         function showFirstSwipeGuide(force = false) {
             const el = document.getElementById('first-swipe-gesture-guide');
             if (!el) return;
-            if (!force) {
-                try {
-                    if (localStorage.getItem(SWIPE_GUIDE_KEY) === '1') return;
-                } catch (e) {}
-                if (typeof webcamActive !== 'undefined' && webcamActive) return;
+            if (!force && !shouldShowFirstSwipeGuide()) return;
+            if (!force && typeof courtEntrance !== 'undefined' && courtEntrance) {
+                pendingFirstSwipeGuide = true;
+                return;
             }
+            if (typeof clearKeys === 'function') clearKeys();
             el.style.display = 'flex';
         }
         function closeFirstSwipeGuide() {
+            pendingFirstSwipeGuide = false;
             const el = document.getElementById('first-swipe-gesture-guide');
             if (el) el.style.display = 'none';
             try { localStorage.setItem(SWIPE_GUIDE_KEY, '1'); } catch (e) {}
@@ -2003,7 +2035,7 @@ function cycleTeachLevelQuick() {
         function hubPlayNow() {
             closeModeHub();
             if (typeof switchStage === 'function') switchStage(1, { showEntrance: true });
-            setTimeout(() => showFirstSwipeGuide(false), 380);
+            queueFirstSwipeGuide();
         }
 
         function hubMotionPractice() {
@@ -2142,6 +2174,8 @@ function cycleTeachLevelQuick() {
         window.hideHubDockGuide = hideHubDockGuide;
         window.showFirstSwipeGuide = showFirstSwipeGuide;
         window.closeFirstSwipeGuide = closeFirstSwipeGuide;
+        window.queueFirstSwipeGuide = queueFirstSwipeGuide;
+        window.flushPendingFirstSwipeGuide = flushPendingFirstSwipeGuide;
         window.closeCharPickerModal = closeCharPickerModal;
         window.selectPlayerCharacter = selectPlayerCharacter;
         window.syncCharPickerUI = syncCharPickerUI;
