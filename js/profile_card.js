@@ -7,7 +7,8 @@
     'use strict';
 
     let currentProfileTab = 'passport'; // 'passport' | 'edit'
-    let threeMini = null; // 3D 匹克鵝展示台實例
+    let threeMini = null; // 3D 角色正面展示台實例
+    let passportCharType = null; // 'human' | 'goose' | 'swan'
 
     // ── 經驗值與成就資料存取 ──
     const EXP_KEY = 'nchu_player_exp';
@@ -127,8 +128,10 @@
                             <div class="passport-sub">NCHU PICKLEBALL PLAYER PASSPORT</div>
                         </div>
                     </div>
-                    <div class="passport-mode-switcher">
-                        <span class="btn-avatar-mode on">🪿 匹克鵝</span>
+                    <div class="passport-mode-switcher passport-char-tabs">
+                        <button type="button" class="btn-avatar-mode" data-pchar="human" onclick="switchAvatarMode('human')">👦 人偶</button>
+                        <button type="button" class="btn-avatar-mode" data-pchar="goose" onclick="switchAvatarMode('goose')">🪿 匹克鵝</button>
+                        <button type="button" class="btn-avatar-mode" data-pchar="swan" onclick="switchAvatarMode('swan')">🦢 黑天鵝</button>
                     </div>
                 </div>
 
@@ -137,7 +140,7 @@
                     <!-- 左側人偶展示台 -->
                     <div class="passport-doll-box">
                         <div id="passport-avatar-3d" style="width:150px;height:210px;"></div>
-                        <div class="avatar-tip-caption">👆 拖曳轉身看看匹克鵝</div>
+                        <div class="avatar-tip-caption">👆 拖曳 360° 欣賞正面動畫</div>
                     </div>
 
                     <!-- 右側球員資訊與等級 -->
@@ -228,19 +231,33 @@
         if (typeof syncCharPickerUI === 'function') syncCharPickerUI();
     }
 
-    function init3DAvatar() {
+    function init3DAvatar(charType) {
         if (threeMini) {
             threeMini.destroy();
             threeMini = null;
         }
+        const activeChar = ['human', 'goose', 'swan'].includes(charType)
+            ? charType
+            : (['human', 'goose', 'swan'].includes(passportCharType)
+                ? passportCharType
+                : (typeof window.playerCharacter === 'string' && ['human', 'goose', 'swan'].includes(window.playerCharacter)
+                    ? window.playerCharacter
+                    : 'goose'));
+        passportCharType = activeChar;
+        document.querySelectorAll('.passport-char-tabs .btn-avatar-mode').forEach(btn => {
+            btn.classList.toggle('on', btn.dataset.pchar === activeChar);
+        });
         const box = document.getElementById('passport-avatar-3d');
-        if (box && window.THREE) {
-            threeMini = new window.NGoCharacterPortrait(box);
+        if (box && window.THREE && window.NGoCharacterPortrait) {
+            threeMini = new window.NGoCharacterPortrait(box, { character: activeChar, dance: false });
         }
     }
 
-    // ── 雙模切換 ──
-    function switchAvatarMode() { init3DAvatar(); }
+    // ── 三角色正面切換 ──
+    function switchAvatarMode(charType) {
+        init3DAvatar(charType);
+        if (threeMini && threeMini.triggerCheer) threeMini.triggerCheer();
+    }
 
     // ── 選手證與編輯分頁切換 ──
     function switchProfileTab(tab) {

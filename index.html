@@ -192,7 +192,7 @@
         .modal-card p {
             font-size: 15px !important;
             line-height: 1.6 !important;
-            color: #cbd5e1 !important;
+            color: #cbd5e1;
             margin-bottom: 20px !important;
         }
         .input-group label {
@@ -7721,6 +7721,14 @@ body.distant-hud-active #subbar-ai-btn {
 #char-picker-modal .character-picker-heading p,#char-picker-modal .character-picker-note{color:#627357!important}
 #char-picker-confirm{background:#3d6848;color:#fffbed;border:0;border-radius:14px;padding:14px;font-size:15px;font-weight:800;box-shadow:none}
 
+/* ═══ 手機畫質設定面板 (Mobile Quality Presets) ═══ */
+#audio-modal .modal-card{max-height:88dvh;overflow-y:auto}
+.phone-quality-settings{padding:12px;margin:12px 0;background:#edf2e1;border:1px solid #c4d1af;border-radius:14px;color:#111827;text-align:left}
+.phone-quality-options{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.phone-quality-options button{border:1px solid #b9cba6;border-radius:10px;background:#fffdf3;padding:10px 2px;color:#1f2937;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+#audio-modal [data-perf].on{background:#365f44;color:#fffbed;border-color:#365f44}
+.phone-quality-settings small{font-size:11px;color:#374151}
+
 /* ═══ 選擇頭像抽屜 (Avatar Drawer) ═══ */
 .avatar-drawer-toggle{display:flex;align-items:center;gap:12px;width:100%;padding:10px 14px;border-radius:12px;border:1px solid var(--line,rgba(255,255,255,0.16));background:rgba(255,255,255,0.06);color:var(--txt,#f8fafc);cursor:pointer;text-align:left;font:inherit;transition:background .18s ease,border-color .18s ease}
 .avatar-drawer-toggle:hover{background:rgba(255,255,255,0.1)}
@@ -7732,14 +7740,23 @@ body.distant-hud-active #subbar-ai-btn {
 .avatar-drawer.open .avatar-drawer-chevron{transform:rotate(180deg)}
 .avatar-drawer-body{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .26s ease,opacity .2s ease,margin-top .2s ease}
 .avatar-drawer.open .avatar-drawer-body{max-height:260px;opacity:1;margin-top:8px}
-#profile-modal .avatar-drawer-toggle{background:#fff8eb;border:1.5px solid #e2d1b3;color:#3d2b1f}
+#profile-modal .avatar-drawer-toggle{background:#fff8eb;border:1.5px solid #e2d1b3;color:#111827}
 #profile-modal .avatar-drawer-toggle:hover{background:#fdf1d8;border-color:#c9a97c}
 #profile-modal .avatar-drawer-preview{background:#f3e5cc}
-#profile-modal .avatar-drawer-sub{color:#85694f}
+#profile-modal .avatar-drawer-sub{color:#374151}
 
 /* ═══ 角色卡片真實照片槽位 ═══ */
 .character-icon{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;overflow:hidden;flex-shrink:0;background:#f2f5e7;border:1.5px solid #d5dec3}
 .character-icon img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ═══ 湖畔 3 角色正面展示切換列 ═══ */
+.lake-char-switcher{position:absolute;left:44%;top:62.5%;transform:translateX(-50%);z-index:16;display:flex;gap:4px;background:rgba(255,251,234,0.92);border:1.5px solid #c9d3b5;border-radius:999px;padding:3px 5px;box-shadow:0 3px 10px rgba(27,67,50,0.22)}
+.lake-char-btn{border:0;background:transparent;width:26px;height:26px;border-radius:999px;font-size:14px;cursor:pointer;display:grid;place-items:center;padding:0;transition:transform .15s ease,background .15s ease}
+.lake-char-btn:hover{background:rgba(82,123,70,0.14);transform:scale(1.08)}
+.lake-char-btn.on{background:#365f44;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
+.passport-char-tabs{display:flex;gap:4px;flex-wrap:wrap}
+.passport-char-tabs .btn-avatar-mode{cursor:pointer;border:1px solid #c9d3b5;background:#f4efe2;color:#1f2937;padding:4px 9px;border-radius:999px;font-size:11.5px;font-weight:700}
+.passport-char-tabs .btn-avatar-mode.on{background:#2e7d32;color:#ffffff;border-color:#2e7d32}
 
 /* ═══ 中興湖新手導覽：手指頭與角色指引 ═══ */
 #pin-dock.guide-highlight{z-index:32!important}
@@ -7748,17 +7765,48 @@ body.distant-hud-active #subbar-ai-btn {
 .hub-dock-guide-finger[hidden]{display:none!important}
 .guide-finger-emoji{font-size:30px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.45))}
 .guide-finger-tag{white-space:nowrap;font-size:11px;font-weight:800;color:#fff;background:#ea580c;padding:3px 9px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,0.3)}
-.hub-dock-guide-bubble{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:min(88%,320px);background:#fffef5;border:2px solid #527b46;border-radius:18px;padding:12px 14px;box-shadow:0 12px 28px rgba(23,44,31,0.34);z-index:34;color:#2e4733;animation:hubGuidePop .28s cubic-bezier(.22,1,.36,1)}
+.hub-dock-guide-bubble{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:min(88%,320px);background:#fffef5;border:2px solid #527b46;border-radius:18px;padding:12px 14px;box-shadow:0 12px 28px rgba(23,44,31,0.34);z-index:34;color:#111827;animation:hubGuidePop .28s cubic-bezier(.22,1,.36,1)}
 .hub-dock-guide-bubble[hidden]{display:none!important}
 .hub-guide-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
-.hub-guide-badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#274a31}
-.hub-guide-close{border:0;background:#e8ecd9;color:#375639;width:24px;height:24px;border-radius:999px;font-size:12px;font-weight:800;cursor:pointer;display:grid;place-items:center}
-.hub-guide-msg{margin:0 0 10px;font-size:12.5px;line-height:1.5;font-weight:600;color:#3b523f}
+.hub-guide-badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#111827}
+.hub-guide-close{border:0;background:#e8ecd9;color:#1f2937;width:24px;height:24px;border-radius:999px;font-size:12px;font-weight:800;cursor:pointer;display:grid;place-items:center}
+.hub-guide-msg{margin:0 0 10px;font-size:12.5px;line-height:1.5;font-weight:600;color:#111827}
 .hub-guide-cta{width:100%;border:0;border-radius:12px;padding:9px 12px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font:inherit;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(234,88,12,0.35)}
 .hub-guide-cta:active{transform:scale(0.98)}
 @keyframes hubFingerBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(9px)}}
 @keyframes hubDockPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
 @keyframes hubGuidePop{from{opacity:0;transform:translateX(-50%) translateY(10px) scale(0.95)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+
+/* ═══ 📖 所有科普與規則解說文字高對比黑字強化 (High-Contrast Ink) ═══ */
+#rules-modal .modal-card{background:#fbf8f0!important;border:2px solid #dec8a7!important;color:#111827!important}
+#rules-modal .rules-header{border-bottom:1.5px solid #dec8a7}
+#rules-modal .rules-header h2{color:#1b4332!important}
+#rules-modal .rules-header .btn{background:#f0e6d6;color:#111827;border:1px solid #d4bea0}
+#rules-modal .tabs .tab{color:#1f2937;background:#f0e6d6;border:1px solid #dec8a7;font-weight:700}
+#rules-modal .tabs .tab.on{background:#2e7d32;color:#ffffff;border-color:#2e7d32}
+#rules-modal .rule-card{background:#ffffff;border:1.5px solid #dec8a7;box-shadow:0 2px 6px rgba(43,29,20,0.06)}
+#rules-modal .rule-card:hover{border-color:#2e7d32}
+#rules-modal .rule-num{background:#2e7d32;color:#ffffff}
+#rules-modal .rule-title{color:#111827!important}
+#rules-modal .rule-desc,#rules-modal p{color:#111827!important;font-size:13.5px!important;line-height:1.7!important}
+#rules-modal .rule-desc strong,#rules-modal .rule-desc b,#rules-modal .science-drawer strong,#rules-modal .science-drawer b{color:#000000!important;font-weight:800}
+#rules-modal .drawer-title{color:#111827!important}
+#rules-modal .drawer-sub{color:#374151!important}
+#rules-modal .drawer-content{color:#111827!important}
+#rules-modal .physics-analogy{background:#eef8e8;border-color:#a5d6a7;color:#111827!important;font-size:12.5px!important;line-height:1.7!important}
+#rules-modal .physics-formula{color:#0f3d16!important;background:#f3ede0;border-color:#d4bea0}
+#rules-modal .science-box,#rules-modal .science-box-gold{color:#111827!important}
+#rules-modal .science-box div,#rules-modal .science-box-gold div{color:#111827}
+#rules-modal .citation-item{color:#111827!important}
+#rules-modal .citation-item span{color:#374151!important}
+#rules-modal .citation-item b{color:#0f3d16!important}
+#rules-modal .citation-item i{color:#92400e!important}
+#rules-modal .rules-footer-bar{border-top:1.5px solid #dec8a7}
+#rules-modal .rules-source-link{color:#1b5e20!important;font-weight:700}
+#community-modal .modal-card{background:#fbf8f0!important;color:#111827!important}
+#community-modal p{color:#111827!important}
+#profile-modal .profile-subtitle{color:#374151!important}
+#audio-modal .modal-card p{color:#cbd5e1}
 
 
     </style>
@@ -7991,7 +8039,17 @@ body.distant-hud-active #subbar-ai-btn {
     <!-- ══════ 音效與觸覺震動設定 ══════ -->
     <div id="audio-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="audio-dialog-title" style="display:none;">
         <div class="modal-card">
-            <h2 id="audio-dialog-title">🎶 音效與震動設定</h2>
+            <h2 id="audio-dialog-title">🎨 畫質、音效與震動</h2>
+            <section class="phone-quality-settings" aria-label="遊戲畫質">
+                <strong>畫面畫質與效能檔位（已啟用抗鋸齒）</strong>
+                <div class="phone-quality-options">
+                    <button type="button" data-perf="low" onclick="applyPerfPreset('low')">低・節能</button>
+                    <button type="button" data-perf="medium" onclick="applyPerfPreset('medium')">中・平衡</button>
+                    <button type="button" data-perf="high" onclick="applyPerfPreset('high')">高・清晰</button>
+                    <button type="button" data-perf="ultra" onclick="applyPerfPreset('ultra')">極致超清</button>
+                </div>
+                <small>預設為「高・清晰」（DPR 最高 2x + WebGL 抗鋸齒），手機發熱時可改「中・平衡」或「低・節能」。</small>
+            </section>
             <p>設定會自動記憶到本機，打球更具手感。</p>
             <div class="input-group">
                 <div class="pref-row">
@@ -8739,7 +8797,7 @@ dω/dt = -β_perforated · ω   (多孔角動量自旋衰減)</div>
                             <div class="drawer-header-left">
                                 <span class="drawer-badge" style="background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;">神經 02</span>
                                 <div class="drawer-title-group">
-                                    <h4 class="drawer-title">⚡ 巨大纖維逃逸系統 GFS <span style="font-size:12px;color:#fcd34d;">(aka 捷安特腳踏車神經 🚲)</span></h4>
+                                    <h4 class="drawer-title">⚡ 巨大纖維逃逸系統 GFS <span style="font-size:12px;color:#b45309;font-weight:800;">(aka 捷安特腳踏車神經 🚲)</span></h4>
                                     <div class="drawer-sub">Giant Fiber 毫秒級極速突觸反射（註：aka 捷安特純屬白痴諧音爛梗，開玩笑亂講ㄉ不要寫在期末考卷上）</div>
                                 </div>
                             </div>
@@ -9157,7 +9215,12 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
                 <!-- 🍃 微風落櫻花瓣與飄逸夏葉動態粒子層 -->
                 <canvas id="hub-particle-canvas"></canvas>
 
-                <button type="button" id="lake-goose-dancer" aria-label="湖畔匹克鵝閃身步" onclick="toast('🪿 湖畔閃身步', '跟著匹克鵝側步、轉肩、擺手！')"><span id="lake-goose-portrait"></span><span class="lake-goose-label">匹克鵝 · 閃身步</span></button>
+                <button type="button" id="lake-goose-dancer" aria-label="湖畔角色正面動畫" onclick="if(window.HubSandbox&&HubSandbox.cheerLakeCharacter)HubSandbox.cheerLakeCharacter()"><span id="lake-goose-portrait"></span><span class="lake-goose-label" id="lake-char-label">匹克鵝 · 閃身步</span></button>
+                <div class="lake-char-switcher" id="lake-char-switcher" role="group" aria-label="切換湖畔展示角色">
+                    <button type="button" class="lake-char-btn" data-lake-char="human" onclick="if(window.HubSandbox&&HubSandbox.setLakeCharacter)HubSandbox.setLakeCharacter('human')" title="興大球員">👦</button>
+                    <button type="button" class="lake-char-btn on" data-lake-char="goose" onclick="if(window.HubSandbox&&HubSandbox.setLakeCharacter)HubSandbox.setLakeCharacter('goose')" title="匹克鵝">🪿</button>
+                    <button type="button" class="lake-char-btn" data-lake-char="swan" onclick="if(window.HubSandbox&&HubSandbox.setLakeCharacter)HubSandbox.setLakeCharacter('swan')" title="黑天鵝">🦢</button>
+                </div>
 
                 <!-- 👆 新手導覽：角色指引開啟「闖關歷險」 -->
                 <div id="hub-dock-guide-bubble" class="hub-dock-guide-bubble" hidden role="status" aria-live="polite">
@@ -9395,7 +9458,7 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
                         </button>
                         <button class="nook-app phone-app" onclick="toggleNookPhone(false); openAudioModal();">
                             <div class="nook-app-icon phone-app-icon app-settings">🎶</div>
-                            <span class="nook-app-label phone-app-label">音效震動</span>
+                            <span class="nook-app-label phone-app-label">畫質音效</span>
                         </button>
                     </div>
 
@@ -9738,7 +9801,7 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
                     <button id="subbar-joy-btn" onclick="cycleJoySpeedQuick()" style="color:var(--ok);">🕹️ 搖桿: 標準</button>
                     <button id="subbar-movement-btn" onclick="toggleMovementMode()" style="color:var(--ok);">🏃 走位: 自動</button>
                     <button id="subbar-net-assist-btn" onclick="toggleNetAssist()" style="color:var(--dim);">🏃 網前助攻: 關</button>
-                    <button id="subbar-perf-btn" onclick="cyclePerfQuick()">⚡ 畫質: 原生高畫質</button>
+                    <button id="subbar-perf-btn" onclick="cyclePerfQuick()">⚡ 畫質: 清晰</button>
                     <button id="subbar-phys-btn" onclick="togglePhysicsMode()" style="color:#c7d2fe;">🌪️ 物理: ⚡極速</button>
                     <button id="subbar-snn-btn" onclick="toggleSnnHud()" style="color:#c084fc;">⚡ 示波器: 開</button>
                 </div>
@@ -11162,7 +11225,7 @@ function apiGet(qs) {
             S.pop(0.9);
             if (typeof toast === 'function') toast('📳 觸覺震動測試成功！', '重砲殺球爆裂手感 [25ms, 15ms, 45ms]');
         }
-        function openAudioModal() { syncAudioUI(); document.getElementById('audio-modal').style.display = 'flex'; closePanel(); S.init(); }
+        function openAudioModal() { syncAudioUI(); if (typeof syncPerfButtons === 'function') syncPerfButtons(); document.getElementById('audio-modal').style.display = 'flex'; closePanel(); S.init(); }
         function closeAudioModal() { document.getElementById('audio-modal').style.display = 'none'; saveAudioPrefs(); clearKeys(); }
         function openTechModal() { document.getElementById('tech-modal').style.display = 'flex'; closePanel(); }
         function closeTechModal() { document.getElementById('tech-modal').style.display = 'none'; clearKeys(); }
@@ -12189,10 +12252,10 @@ if (typeof window !== "undefined") {
    NCHU Pickleball V5 - 體感 AI 與動力鏈追蹤 (Motion AI & BlazePose)
    ═══════════════════════════════════════════════════════════════════ */
         const PERF_PRESETS = {
-            low: { label: '🟢 節能 (720p)', joints: 'CORE6', frameSkip: 3, pixelRatio: 1.2, shadow: 0, complexity: 0, skeleton: 'MINIMAL' },
-            medium: { label: '🟡 平衡 (1080p)', joints: 'UPPER14', frameSkip: 2, pixelRatio: 1.6, shadow: 512, complexity: 0, skeleton: 'BASIC' },
-            high: { label: '🔴 原生高畫質 (推薦)', joints: 'UPPER14', frameSkip: 2, pixelRatio: Math.min(window.devicePixelRatio || 2, 2.0), shadow: 1024, complexity: 0, skeleton: 'SMOOTH' },
-            ultra: { label: '🟣 極致超取樣', joints: 'FULL33', frameSkip: 1, pixelRatio: Math.min(window.devicePixelRatio || 2.5, 2.5), shadow: 2048, complexity: 1, skeleton: 'GLOW' }
+            low: { label: '🟢 節能', joints: 'CORE6', frameSkip: 3, pixelRatio: 1.2, shadow: 0, complexity: 0, skeleton: 'MINIMAL' },
+            medium: { label: '🟡 平衡', joints: 'UPPER14', frameSkip: 2, pixelRatio: 1.6, shadow: 512, complexity: 0, skeleton: 'BASIC' },
+            high: { label: '🔴 清晰 (推薦)', joints: 'UPPER14', frameSkip: 2, pixelRatio: Math.min(window.devicePixelRatio || 2, 2.0), shadow: 1024, complexity: 0, skeleton: 'SMOOTH' },
+            ultra: { label: '🟣 超清', joints: 'FULL33', frameSkip: 1, pixelRatio: Math.min(window.devicePixelRatio || 2.5, 2.5), shadow: 2048, complexity: 1, skeleton: 'GLOW' }
         };
         const JOINT_SETS = {
             CORE6: [11, 12, 13, 14, 15, 16],
@@ -12203,13 +12266,15 @@ if (typeof window !== "undefined") {
         try { savedPerf = localStorage.getItem('nchu_pb_perf'); } catch(e) {}
         let perfLevel = (savedPerf && PERF_PRESETS[savedPerf]) ? savedPerf : 'high';
         let frameSkip = PERF_PRESETS[perfLevel].frameSkip;
+        function getRenderPixelRatio(level = perfLevel) {
+            const preset = PERF_PRESETS[level] || PERF_PRESETS.high;
+            return Math.min(window.devicePixelRatio || 1, preset.pixelRatio);
+        }
         function applyPerfPreset(level) {
             const p = PERF_PRESETS[level]; if (!p) return;
             perfLevel = level; frameSkip = p.frameSkip;
             try { localStorage.setItem('nchu_pb_perf', level); } catch(e) {}
-            const isMobile = (typeof isMobileDevice !== 'undefined') ? isMobileDevice : /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
-            const maxPR = isMobile ? 1.4 : 2.0;
-            const dpr = Math.min(window.devicePixelRatio || 1.5, Math.min(p.pixelRatio, maxPR));
+            const dpr = getRenderPixelRatio(level);
             const stageEl = document.getElementById('stage3d');
             const sw = (stageEl && stageEl.clientWidth) ? stageEl.clientWidth : window.innerWidth;
             const sh = (stageEl && stageEl.clientHeight) ? stageEl.clientHeight : window.innerHeight;
@@ -13680,12 +13745,49 @@ if (typeof window !== "undefined") {
         }
     }
 
+    const LAKE_CHAR_META = {
+        human: { label: '興大球員 · 陽光揮拍', toastTitle: '👦 興大球員正面打招呼！', toastMsg: '雙手熱身揮拍中，準備點「闖關歷險」上場開打！' },
+        goose: { label: '匹克鵝 · 正面閃身步', toastTitle: '🪿 匹克鵝正面閃身步！', toastMsg: '嘎！跟著匹克鵝側步、轉肩、擺手一起暖身！' },
+        swan:  { label: '黑天鵝 · 冠軍展翅舞', toastTitle: '🦢 黑天鵝正面展翅應援！', toastMsg: '黑金冠軍氣勢全開，準備稱霸中興湖水上球場！' }
+    };
+    let currentLakeChar = 'goose';
+
+    function mountLakeCharacter(charType) {
+        const type = LAKE_CHAR_META[charType] ? charType : 'goose';
+        currentLakeChar = type;
+        if (lakeGoose) { lakeGoose.destroy(); lakeGoose = null; }
+        const portrait = document.getElementById('lake-goose-portrait');
+        if (portrait && window.NGoCharacterPortrait) {
+            lakeGoose = new window.NGoCharacterPortrait(portrait, { dance: true, character: type });
+        }
+        const labelEl = document.getElementById('lake-char-label');
+        if (labelEl) labelEl.textContent = LAKE_CHAR_META[type].label;
+        document.querySelectorAll('#lake-char-switcher .lake-char-btn').forEach(btn => {
+            btn.classList.toggle('on', btn.dataset.lakeChar === type);
+        });
+    }
+
+    function setLakeCharacter(charType) {
+        mountLakeCharacter(charType);
+        if (lakeGoose && lakeGoose.triggerCheer) lakeGoose.triggerCheer();
+    }
+
+    function cheerLakeCharacter() {
+        const meta = LAKE_CHAR_META[currentLakeChar] || LAKE_CHAR_META.goose;
+        if (lakeGoose && lakeGoose.triggerCheer) lakeGoose.triggerCheer();
+        if (typeof toast === 'function') toast(meta.toastTitle, meta.toastMsg);
+    }
+
     // 啟動沙盤動態
     function start() {
         if (isRunning) return;
         refreshDomCache();
-        const portrait = document.getElementById('lake-goose-portrait');
-        if (portrait && window.NGoCharacterPortrait && !lakeGoose) lakeGoose = new window.NGoCharacterPortrait(portrait, { dance: true });
+        const preferred = (typeof window.playerCharacter === 'string' && LAKE_CHAR_META[window.playerCharacter])
+            ? window.playerCharacter
+            : (typeof localStorage !== 'undefined' && LAKE_CHAR_META[localStorage.getItem('nchu_player_char')])
+                ? localStorage.getItem('nchu_player_char')
+                : 'goose';
+        mountLakeCharacter(preferred);
 
         pCanvas = document.getElementById('hub-particle-canvas');
         pCtx = pCanvas ? pCanvas.getContext('2d') : null;
@@ -13728,19 +13830,26 @@ if (typeof window !== "undefined") {
         stop: stop,
         isRunning: function() { return isRunning; },
         interactActor: interactActor,
-        startFoxMotionPractice: startFoxMotionPractice
+        startFoxMotionPractice: startFoxMotionPractice,
+        setLakeCharacter: setLakeCharacter,
+        cheerLakeCharacter: cheerLakeCharacter
     };
 
 })(window);
 
 
 /* ─── character-portrait.js ─── */
-/* Small, independent GLB portraits for the passport and the lake. */
+/* Small, independent antialiased 3D front-facing portraits for all 3 characters (human, goose, swan). */
 (function (window) {
     'use strict';
     const files = new Map();
-    function modelBytes() {
-        const url = 'models/characters/pickler_goose_mobile.glb';
+    const MODEL_URLS = {
+        goose: 'models/characters/pickler_goose_mobile.glb',
+        swan: 'models/characters/black_swan_mobile.glb'
+    };
+
+    function modelBytes(charType) {
+        const url = MODEL_URLS[charType] || MODEL_URLS.goose;
         if (!files.has(url)) {
             files.set(url, fetch(url).then(r => {
                 if (!r.ok) throw new Error('模型讀取失敗');
@@ -13749,7 +13858,9 @@ if (typeof window !== "undefined") {
         }
         return files.get(url);
     }
+
     function disposePortraitModel(root) {
+        if (!root) return;
         const geometries = new Set(), materials = new Set(), textures = new Set();
         root.traverse(o => {
             if (o.geometry) geometries.add(o.geometry);
@@ -13763,15 +13874,23 @@ if (typeof window !== "undefined") {
         materials.forEach(m => m.dispose());
         textures.forEach(t => t.dispose());
     }
-    // Side steps, shoulder turns and alternating knee bends. Stylized, not video mocap.
-    function shanshenClip(root) {
+
+    // Front-facing cheerful animations for goose & swan (face camera, lively bounce, wave & sway).
+    function frontDanceClip(root, charType) {
         const THREE = window.THREE, tracks = [];
         const times = [0, .3, .6, .9, 1.2, 1.5, 1.8, 2.1, 2.4];
         const sway = [0, 1, 0, -1, 0, 1, 0, -1, 0];
-        const rotations = {
-            Spine: [0, .2, .13], Head: [0, -.13, -.07],
-            'UpperArm.L': [.28, .08, .12], 'UpperArm.R': [-.28, -.08, -.12],
-            'Forearm.L': [.16, 0, .12], 'Forearm.R': [-.16, 0, -.12],
+        const isSwan = charType === 'swan';
+        const rotations = isSwan ? {
+            Spine: [0.06, .16, .1], Head: [-0.08, -.1, -.08],
+            'UpperArm.L': [.38, .12, .22], 'UpperArm.R': [-.36, -.12, -.22],
+            'Forearm.L': [.24, 0, .18], 'Forearm.R': [-.22, 0, -.18],
+            'Thigh.L': [.22, 0, .08], 'Thigh.R': [-.22, 0, -.08],
+            'Shin.L': [-.2, 0, 0], 'Shin.R': [.2, 0, 0]
+        } : {
+            Spine: [0.04, .18, .12], Head: [-0.05, -.12, -.07],
+            'UpperArm.L': [.34, .09, .16], 'UpperArm.R': [-.34, -.09, -.16],
+            'Forearm.L': [.2, 0, .14], 'Forearm.R': [-.2, 0, -.14],
             'Thigh.L': [.32, 0, .1], 'Thigh.R': [-.32, 0, -.1],
             'Shin.L': [-.28, 0, 0], 'Shin.R': [.28, 0, 0]
         };
@@ -13787,61 +13906,184 @@ if (typeof window !== "undefined") {
             }
             tracks.push(new THREE.QuaternionKeyframeTrack(bone.name + '.quaternion', times, values));
         });
-        return new THREE.AnimationClip('Lake_Shanshen', 2.4, tracks);
+        return new THREE.AnimationClip(isSwan ? 'Swan_FrontDance' : 'Lake_Shanshen', 2.4, tracks);
     }
+
+    // Procedural front-facing cute NCHU chibi player (facing +Z directly at the camera).
+    function buildHumanPortraitModel(THREE) {
+        const root = new THREE.Group();
+
+        // Friendly smiling face texture oriented toward +Z (front camera).
+        const fc = document.createElement('canvas');
+        fc.width = 256; fc.height = 256;
+        const ctx = fc.getContext('2d');
+        ctx.fillStyle = '#fde2c4'; ctx.fillRect(0, 0, 256, 256);
+        ctx.fillStyle = '#3b2416';
+        ctx.beginPath(); ctx.arc(102, 122, 10, 0, Math.PI * 2); ctx.arc(154, 122, 10, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath(); ctx.arc(105, 118, 3.5, 0, Math.PI * 2); ctx.arc(157, 118, 3.5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = 'rgba(244, 114, 182, 0.42)';
+        ctx.beginPath(); ctx.ellipse(84, 144, 15, 9, 0, 0, Math.PI * 2); ctx.ellipse(172, 144, 15, 9, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#6b3a24'; ctx.lineWidth = 6; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.arc(128, 142, 18, 0.2 * Math.PI, 0.8 * Math.PI); ctx.stroke();
+        const faceTex = new THREE.CanvasTexture(fc);
+        faceTex.encoding = THREE.sRGBEncoding;
+
+        const skinMat = new THREE.MeshStandardMaterial({ color: 0xfde2c4, roughness: 0.7 });
+        const poloMat = new THREE.MeshStandardMaterial({ color: 0x0d9488, roughness: 0.55 });
+        const whiteMat = new THREE.MeshStandardMaterial({ color: 0xfffdf5, roughness: 0.5 });
+        const shortMat = new THREE.MeshStandardMaterial({ color: 0x1e3a5f, roughness: 0.7 });
+        const capMat = new THREE.MeshStandardMaterial({ color: 0xfacc15, roughness: 0.48 });
+        const shoeMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.55 });
+
+        const body = new THREE.Group();
+        root.add(body);
+
+        // Legs
+        const legL = new THREE.Group(); legL.position.set(-0.14, 0.48, 0);
+        const legR = new THREE.Group(); legR.position.set(0.14, 0.48, 0);
+        const legGeo = new THREE.CylinderGeometry(0.08, 0.075, 0.42, 14);
+        const shoeGeo = new THREE.BoxGeometry(0.14, 0.09, 0.22);
+        const mLegL = new THREE.Mesh(legGeo, shortMat); mLegL.position.y = -0.18; legL.add(mLegL);
+        const mShoeL = new THREE.Mesh(shoeGeo, shoeMat); mShoeL.position.set(0, -0.42, 0.04); legL.add(mShoeL);
+        const mLegR = new THREE.Mesh(legGeo, shortMat); mLegR.position.y = -0.18; legR.add(mLegR);
+        const mShoeR = new THREE.Mesh(shoeGeo, shoeMat); mShoeR.position.set(0, -0.42, 0.04); legR.add(mShoeR);
+        body.add(legL, legR);
+
+        // Torso + collar
+        const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.28, 0.58, 18), poloMat);
+        torso.position.y = 0.76; body.add(torso);
+        const collar = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.036, 10, 20), whiteMat);
+        collar.rotation.x = Math.PI / 2; collar.position.y = 1.05; body.add(collar);
+
+        // Head + face facing +Z
+        const head = new THREE.Group(); head.position.set(0, 1.32, 0);
+        const headMesh = new THREE.Mesh(
+            new THREE.SphereGeometry(0.27, 24, 24),
+            new THREE.MeshStandardMaterial({ map: faceTex, roughness: 0.65 })
+        );
+        headMesh.rotation.y = -Math.PI / 2; // Align canvas center with +Z front camera
+        head.add(headMesh);
+        const capDome = new THREE.Mesh(new THREE.SphereGeometry(0.285, 22, 16, 0, Math.PI * 2, 0, Math.PI * 0.52), capMat);
+        capDome.position.y = 0.03; head.add(capDome);
+        const brim = new THREE.Mesh(new THREE.CylinderGeometry(0.29, 0.32, 0.035, 20, 1, false, -0.85, 1.7), capMat);
+        brim.position.set(0, 0.05, 0.14); brim.rotation.x = 0.14; head.add(brim);
+        body.add(head);
+
+        // Left arm (waves cheerfully at camera!)
+        const armL = new THREE.Group(); armL.position.set(-0.29, 0.98, 0);
+        const armLMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.058, 0.42, 12), skinMat);
+        armLMesh.position.y = -0.18; armL.add(armLMesh);
+        const handL = new THREE.Mesh(new THREE.SphereGeometry(0.075, 12, 12), skinMat);
+        handL.position.y = -0.4; armL.add(handL);
+        body.add(armL);
+
+        // Right arm + cute N-GO paddle facing camera
+        const armR = new THREE.Group(); armR.position.set(0.29, 0.98, 0);
+        const armRMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.058, 0.42, 12), skinMat);
+        armRMesh.position.y = -0.18; armR.add(armRMesh);
+        const paddle = new THREE.Group();
+        paddle.position.set(0.04, -0.42, 0.08);
+        paddle.rotation.set(-0.35, 0.25, -0.25);
+        const pGrip = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.15, 10), new THREE.MeshStandardMaterial({ color: 0x234b3b, roughness: 0.8 }));
+        const pFace = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.30, 0.028), new THREE.MeshStandardMaterial({ color: 0xfef3c7, roughness: 0.5 }));
+        pFace.position.y = 0.21;
+        const pRim = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.32, 0.02), new THREE.MeshStandardMaterial({ color: 0x234b3b, roughness: 0.6 }));
+        pRim.position.y = 0.21;
+        paddle.add(pGrip, pRim, pFace);
+        armR.add(paddle);
+        body.add(armR);
+
+        root.userData.humanParts = { body, head, armL, armR, legL, legR };
+        return root;
+    }
+
     class CharacterPortrait {
         constructor(container, options = {}) {
             this.container = container;
             this.dance = !!options.dance;
+            this.character = ['human', 'goose', 'swan'].includes(options.character)
+                ? options.character
+                : ((typeof window.playerCharacter === 'string' && ['human', 'goose', 'swan'].includes(window.playerCharacter)) ? window.playerCharacter : 'goose');
             this.destroyed = false;
             this.listeners = [];
-            this.yaw = .2;
+            // Default yaw faces the front camera so players always see the cute face.
+            this.yaw = this.dance ? 0.0 : 0.08;
             this.time = 0;
             this.last = 0;
             this.frame = 0;
-            this.container.textContent = '匹克鵝準備中…';
+            this.cheerTimer = 0;
+            const loadNames = { human: '興大球員', goose: '匹克鵝', swan: '黑天鵝' };
+            this.container.textContent = (loadNames[this.character] || '角色') + '準備中…';
             this.ready = this.init();
+        }
+        triggerCheer() {
+            this.cheerTimer = 1.15;
         }
         async init() {
             const THREE = window.THREE;
             try {
-                if (!THREE || !THREE.GLTFLoader) throw new Error('3D 套件尚未就緒');
-                const bytes = await modelBytes();
-                const gltf = await new Promise((resolve, reject) => new THREE.GLTFLoader().parse(bytes, '', resolve, reject));
-                if (this.destroyed) { disposePortraitModel(gltf.scene); return; }
+                if (!THREE) throw new Error('3D 套件尚未就緒');
                 this.scene = new THREE.Scene();
                 this.camera = new THREE.PerspectiveCamera(32, 1, .05, 20);
-                this.camera.position.set(0, 1.05, 4.5);
-                this.camera.lookAt(0, 1.05, 0);
-                this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'low-power' });
-                this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
+                this.camera.position.set(0, 1.05, 4.45);
+                this.camera.lookAt(0, 1.02, 0);
+                this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'default' });
+                this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
                 this.renderer.outputEncoding = THREE.sRGBEncoding;
+
+                if (this.character === 'human') {
+                    this.root = buildHumanPortraitModel(THREE);
+                } else {
+                    if (!THREE.GLTFLoader) throw new Error('3D 套件尚未就緒');
+                    const bytes = await modelBytes(this.character);
+                    const gltf = await new Promise((resolve, reject) => new THREE.GLTFLoader().parse(bytes, '', resolve, reject));
+                    if (this.destroyed) { disposePortraitModel(gltf.scene); return; }
+                    this.root = gltf.scene;
+                    this.gltfAnimations = gltf.animations || [];
+                }
+
+                if (this.destroyed) { disposePortraitModel(this.root); this.renderer.dispose(); return; }
+
                 this.container.textContent = '';
                 this.container.appendChild(this.renderer.domElement);
-                this.renderer.domElement.setAttribute('aria-label', this.dance ? '匹克鵝的閃身步風格舞步' : '可轉身的 3D 匹克鵝');
-                this.scene.add(new THREE.HemisphereLight(0xfff8ed, 0x728769, 1.2));
-                const light = new THREE.DirectionalLight(0xffffff, 1.2);
-                light.position.set(2, 4, 4); this.scene.add(light);
-                this.root = gltf.scene;
+                const labelMap = { human: '興大球員正面動畫', goose: '匹克鵝正面閃身步', swan: '黑天鵝正面展翅舞' };
+                this.renderer.domElement.setAttribute('aria-label', labelMap[this.character] || '3D 角色正面展示');
+                this.scene.add(new THREE.HemisphereLight(0xfffaf0, 0x728769, 1.3));
+                const keyLight = new THREE.DirectionalLight(0xffffff, 1.25);
+                keyLight.position.set(1.8, 3.8, 4.5); this.scene.add(keyLight);
+                const rimLight = new THREE.DirectionalLight(0xfff3d6, 0.45);
+                rimLight.position.set(-2.5, 2.5, -2); this.scene.add(rimLight);
+
                 this.root.updateMatrixWorld(true);
                 const box = new THREE.Box3().setFromObject(this.root);
-                this.root.scale.setScalar(2.05 / box.getSize(new THREE.Vector3()).y);
+                this.root.scale.setScalar(2.02 / Math.max(0.1, box.getSize(new THREE.Vector3()).y));
                 this.root.updateMatrixWorld(true);
                 box.setFromObject(this.root);
                 const center = box.getCenter(new THREE.Vector3());
                 this.root.position.set(-center.x, -box.min.y, -center.z);
                 this.baseX = this.root.position.x;
+                this.baseY = this.root.position.y;
                 this.root.traverse(o => { if (o.isMesh) o.frustumCulled = false; });
                 this.scene.add(this.root);
-                this.mixer = new THREE.AnimationMixer(this.root);
-                const clip = this.dance ? shanshenClip(this.root) : gltf.animations.find(c => c.name === 'Idle');
-                if (clip) this.mixer.clipAction(clip).play();
+
+                if (this.character !== 'human') {
+                    this.mixer = new THREE.AnimationMixer(this.root);
+                    const clip = frontDanceClip(this.root, this.character);
+                    if (clip && clip.tracks.length) {
+                        this.mixer.clipAction(clip).play();
+                    } else if (this.gltfAnimations && this.gltfAnimations.length) {
+                        const fallback = this.gltfAnimations.find(c => c.name === 'Idle') || this.gltfAnimations[0];
+                        if (fallback) this.mixer.clipAction(fallback).play();
+                    }
+                }
+
                 this.resizeObserver = new ResizeObserver(() => this.resize());
                 this.resizeObserver.observe(this.container); this.resize();
                 if (!this.dance) this.bindDrag();
                 this.tick = this.tick.bind(this); this.frame = requestAnimationFrame(this.tick);
             } catch (e) {
-                if (!this.destroyed) this.container.textContent = '匹克鵝暫時未載入，請稍後重開。';
+                if (!this.destroyed) this.container.textContent = '角色暫時未載入，請稍後重開。';
                 console.warn('Character portrait:', e.message);
             }
         }
@@ -13864,12 +14106,35 @@ if (typeof window !== "undefined") {
         tick(now) {
             if (this.destroyed) return;
             this.frame = requestAnimationFrame(this.tick);
-            if (document.hidden || now - this.last < 50) return;
+            if (document.hidden || now - this.last < 33) return;
             const dt = this.last ? Math.min(.1, (now - this.last) / 1000) : 0;
             this.last = now; this.time += dt;
-            this.mixer.update(dt);
-            this.root.rotation.y = this.yaw + (this.dance ? Math.sin(this.time * Math.PI / 1.2) * .25 : 0);
-            this.root.position.x = this.baseX + (this.dance ? Math.sin(this.time * Math.PI / .6) * .09 : 0);
+            if (this.cheerTimer > 0) this.cheerTimer = Math.max(0, this.cheerTimer - dt);
+
+            if (this.mixer) this.mixer.update(dt);
+
+            // Human procedural front-facing wave & bounce animation
+            const hp = this.root && this.root.userData && this.root.userData.humanParts;
+            if (hp) {
+                const waveSpeed = this.cheerTimer > 0 ? 14 : 5.5;
+                hp.armL.rotation.z = -2.45 + Math.sin(this.time * waveSpeed) * 0.42;
+                hp.armR.rotation.z = 0.25 + Math.sin(this.time * 4.2) * 0.16;
+                hp.armR.rotation.x = -0.3 + Math.cos(this.time * 4.2) * 0.18;
+                hp.head.rotation.z = Math.sin(this.time * 2.8) * 0.08;
+                hp.head.rotation.y = Math.sin(this.time * 1.9) * 0.12;
+                hp.legL.rotation.x = Math.sin(this.time * 5.2) * 0.16;
+                hp.legR.rotation.x = -Math.sin(this.time * 5.2) * 0.16;
+            }
+
+            const cheerBounce = this.cheerTimer > 0 ? Math.abs(Math.sin(this.cheerTimer * Math.PI * 3.5)) * 0.26 : 0;
+            const idleBounce = this.dance ? Math.abs(Math.sin(this.time * Math.PI / 0.6)) * 0.055 : Math.abs(Math.sin(this.time * 2.4)) * 0.025;
+            // Stay facing front (±0.22 rad gentle sway) so the front face is always clearly visible
+            const frontSway = this.dance
+                ? Math.sin(this.time * Math.PI / 1.25) * 0.22
+                : Math.sin(this.time * 1.4) * 0.12;
+            this.root.rotation.y = this.yaw + frontSway;
+            this.root.position.x = this.baseX + (this.dance ? Math.sin(this.time * Math.PI / 0.65) * 0.08 : 0);
+            this.root.position.y = this.baseY + idleBounce + cheerBounce;
             this.renderer.render(this.scene, this.camera);
         }
         destroy() {
@@ -13924,7 +14189,8 @@ if (typeof window !== "undefined") {
     'use strict';
 
     let currentProfileTab = 'passport'; // 'passport' | 'edit'
-    let threeMini = null; // 3D 匹克鵝展示台實例
+    let threeMini = null; // 3D 角色正面展示台實例
+    let passportCharType = null; // 'human' | 'goose' | 'swan'
 
     // ── 經驗值與成就資料存取 ──
     const EXP_KEY = 'nchu_player_exp';
@@ -14044,8 +14310,10 @@ if (typeof window !== "undefined") {
                             <div class="passport-sub">NCHU PICKLEBALL PLAYER PASSPORT</div>
                         </div>
                     </div>
-                    <div class="passport-mode-switcher">
-                        <span class="btn-avatar-mode on">🪿 匹克鵝</span>
+                    <div class="passport-mode-switcher passport-char-tabs">
+                        <button type="button" class="btn-avatar-mode" data-pchar="human" onclick="switchAvatarMode('human')">👦 人偶</button>
+                        <button type="button" class="btn-avatar-mode" data-pchar="goose" onclick="switchAvatarMode('goose')">🪿 匹克鵝</button>
+                        <button type="button" class="btn-avatar-mode" data-pchar="swan" onclick="switchAvatarMode('swan')">🦢 黑天鵝</button>
                     </div>
                 </div>
 
@@ -14054,7 +14322,7 @@ if (typeof window !== "undefined") {
                     <!-- 左側人偶展示台 -->
                     <div class="passport-doll-box">
                         <div id="passport-avatar-3d" style="width:150px;height:210px;"></div>
-                        <div class="avatar-tip-caption">👆 拖曳轉身看看匹克鵝</div>
+                        <div class="avatar-tip-caption">👆 拖曳 360° 欣賞正面動畫</div>
                     </div>
 
                     <!-- 右側球員資訊與等級 -->
@@ -14145,19 +14413,33 @@ if (typeof window !== "undefined") {
         if (typeof syncCharPickerUI === 'function') syncCharPickerUI();
     }
 
-    function init3DAvatar() {
+    function init3DAvatar(charType) {
         if (threeMini) {
             threeMini.destroy();
             threeMini = null;
         }
+        const activeChar = ['human', 'goose', 'swan'].includes(charType)
+            ? charType
+            : (['human', 'goose', 'swan'].includes(passportCharType)
+                ? passportCharType
+                : (typeof window.playerCharacter === 'string' && ['human', 'goose', 'swan'].includes(window.playerCharacter)
+                    ? window.playerCharacter
+                    : 'goose'));
+        passportCharType = activeChar;
+        document.querySelectorAll('.passport-char-tabs .btn-avatar-mode').forEach(btn => {
+            btn.classList.toggle('on', btn.dataset.pchar === activeChar);
+        });
         const box = document.getElementById('passport-avatar-3d');
-        if (box && window.THREE) {
-            threeMini = new window.NGoCharacterPortrait(box);
+        if (box && window.THREE && window.NGoCharacterPortrait) {
+            threeMini = new window.NGoCharacterPortrait(box, { character: activeChar, dance: false });
         }
     }
 
-    // ── 雙模切換 ──
-    function switchAvatarMode() { init3DAvatar(); }
+    // ── 三角色正面切換 ──
+    function switchAvatarMode(charType) {
+        init3DAvatar(charType);
+        if (threeMini && threeMini.triggerCheer) threeMini.triggerCheer();
+    }
 
     // ── 選手證與編輯分頁切換 ──
     function switchProfileTab(tab) {
@@ -14430,7 +14712,7 @@ function syncSubbarStates() {
     }
     const perfBtn = document.getElementById('subbar-perf-btn');
     if (perfBtn) {
-        const map = { low: '🟢 節能', medium: '🟡 平衡', high: '🔴 原生高畫質', ultra: '🟣 極致' };
+        const map = { low: '🟢 節能', medium: '🟡 平衡', high: '🔴 清晰', ultra: '🟣 超清' };
         perfBtn.innerHTML = `⚡ 畫質: ${map[perfLevel] || perfLevel}`;
     }
     const scaleLbl = document.getElementById('quick-scale-lbl');
@@ -15174,7 +15456,7 @@ function cycleTeachLevelQuick() {
         }
 
         function syncPerfButtons() {
-            document.querySelectorAll('[data-perf]').forEach(b => b.classList.toggle('on', b.dataset.perf === perfLevel));
+            document.querySelectorAll('[data-perf]').forEach(b => { const selected = b.dataset.perf === perfLevel; b.classList.toggle('on', selected); b.setAttribute('aria-pressed', String(selected)); });
         }
 
         /* ═══════ 效能分級 ═══════ */
@@ -19852,6 +20134,7 @@ function cycleTeachLevelQuick() {
 
         // ═══════ 🎭 玩家自選出戰角色 (Player Character Selection) ═══════
         let playerCharacter = (typeof localStorage !== 'undefined' && localStorage.getItem('nchu_player_char')) || 'goose'; // 'human' | 'goose' | 'swan'
+        if (typeof window !== 'undefined') window.playerCharacter = playerCharacter;
         let playerRiggedGoose = { root: null, mixer: null, actions: {}, ready: false };
         let playerRiggedSwan = { root: null, mixer: null, actions: {}, ready: false };
         let currentPlayerAction = 'Idle';
@@ -19861,34 +20144,57 @@ function cycleTeachLevelQuick() {
         let pPadVisual = null;
         let gPadVisual = null;
 
-        // 骨骼角色專用握拍產生器 (Character Paddle Visual Generator)
-        function createCharacterPaddle(faceColor = 0x2dd4bf, rimColor = 0x111827) {
+        // Shared paddle artwork and geometry; origin is at the handle for rig sockets.
+        let paddleParts = null;
+        function createCharacterPaddle() {
+            if (!paddleParts) {
+                const shape = new THREE.Shape();
+                shape.moveTo(-0.07, 0.075);
+                shape.quadraticCurveTo(-0.125, 0.09, -0.125, 0.15);
+                shape.lineTo(-0.125, 0.29);
+                shape.quadraticCurveTo(-0.125, 0.385, -0.055, 0.39);
+                shape.lineTo(0.055, 0.39);
+                shape.quadraticCurveTo(0.125, 0.385, 0.125, 0.29);
+                shape.lineTo(0.125, 0.15);
+                shape.quadraticCurveTo(0.125, 0.09, 0.07, 0.075);
+                shape.quadraticCurveTo(0, 0.06, -0.07, 0.075);
+                const rim = new THREE.ExtrudeGeometry(shape, { depth: 0.024, bevelEnabled: false, curveSegments: 8 });
+                rim.translate(0, 0, -0.012);
+                const face = new THREE.ShapeGeometry(shape, 8);
+                const pos = face.attributes.position;
+                const uv = face.attributes.uv;
+                for (let i = 0; i < pos.count; i++) uv.setXY(i, (pos.getX(i) + 0.125) / 0.25, (pos.getY(i) - 0.06) / 0.33);
+                paddleParts = {
+                    rim, face,
+                    rimMat: new THREE.MeshStandardMaterial({ color: 0x234b3b, roughness: 0.65 }),
+                    faceMat: new THREE.MeshStandardMaterial({ map: acPaddleTex(), roughness: 0.58, side: THREE.DoubleSide }),
+                    gripMat: new THREE.MeshStandardMaterial({ color: 0x234b3b, roughness: 0.85 }),
+                    wrapMat: new THREE.MeshStandardMaterial({ color: 0xece1bd, roughness: 0.9 }),
+                    neck: new THREE.CylinderGeometry(0.027, 0.022, 0.035, 10),
+                    grip: new THREE.CylinderGeometry(0.024, 0.024, 0.12, 12),
+                    wrap: new THREE.TorusGeometry(0.0245, 0.0018, 6, 16)
+                };
+            }
             const padGrp = new THREE.Group();
-
-            // 拍面 (Paddle Face)
-            const faceMat = new THREE.MeshStandardMaterial({
-                color: faceColor,
-                roughness: 0.32,
-                metalness: 0.08
-            });
-            const face = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.32, 0.025), faceMat);
-            face.position.set(0, 0.22, 0);
-            face.castShadow = true;
-            padGrp.add(face);
-
-            // 護邊 (Edge Guard)
-            const edgeMat = new THREE.MeshStandardMaterial({ color: rimColor, roughness: 0.6 });
-            const edge = new THREE.Mesh(new THREE.BoxGeometry(0.255, 0.335, 0.02), edgeMat);
-            edge.position.set(0, 0.22, 0);
-            padGrp.add(edge);
-
-            // 握把 (Grip)
-            const gripMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.85 });
-            const grip = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.025, 0.12, 10), gripMat);
-            grip.position.set(0, 0.04, 0);
-            grip.castShadow = true;
-            padGrp.add(grip);
-
+            const rim = new THREE.Mesh(paddleParts.rim, paddleParts.rimMat);
+            rim.castShadow = true; padGrp.add(rim);
+            for (const side of [-1, 1]) {
+                const face = new THREE.Mesh(paddleParts.face, paddleParts.faceMat);
+                face.scale.set(0.9, 0.94, 1);
+                face.position.set(0, 0.0138, side * 0.0125);
+                if (side < 0) face.rotation.y = Math.PI;
+                padGrp.add(face);
+            }
+            const neck = new THREE.Mesh(paddleParts.neck, paddleParts.rimMat);
+            neck.position.y = 0.076; padGrp.add(neck);
+            const grip = new THREE.Mesh(paddleParts.grip, paddleParts.gripMat);
+            grip.position.y = 0.015; grip.castShadow = true; padGrp.add(grip);
+            for (let i = 0; i < 5; i++) {
+                const wrap = new THREE.Mesh(paddleParts.wrap, paddleParts.wrapMat);
+                wrap.position.y = -0.03 + i * 0.022;
+                wrap.rotation.x = Math.PI / 2;
+                padGrp.add(wrap);
+            }
             return padGrp;
         }
 
@@ -19928,9 +20234,13 @@ function cycleTeachLevelQuick() {
 
             // 3. 切換角色設定
             playerCharacter = type;
+            if (typeof window !== 'undefined') window.playerCharacter = type;
             currentPlayerAction = 'Idle';
             try { localStorage.setItem('nchu_player_char', type); } catch(e){}
             updatePlayerMeshVisibility();
+            if (typeof HubSandbox !== 'undefined' && HubSandbox.isRunning && HubSandbox.isRunning() && HubSandbox.setLakeCharacter) {
+                HubSandbox.setLakeCharacter(type);
+            }
 
             // 4. 若切換為骨架角色，立即以 Idle 啟動該角色的 Mixer
             if (playerCharacter !== 'human') {
@@ -19994,6 +20304,29 @@ function cycleTeachLevelQuick() {
                 }
             });
             return found;
+        }
+
+        // Align the grip with the existing hand and let its bone drive the paddle.
+        function attachRiggedPaddle(root) {
+            const socket = findBone(root, 'PaddleSocket.R');
+            if (!socket) return;
+            root.updateMatrixWorld(true);
+            const paddle = createCharacterPaddle();
+            // Model space is smaller than the game paddle proxy; keep the racket visible.
+            paddle.scale.setScalar(3);
+            let hand = null;
+            root.traverse(node => {
+                if (node.isMesh && /^Soft_articulated_hand_R/.test(node.name)) hand = node;
+            });
+            if (hand) {
+                const center = new THREE.Box3().setFromObject(hand).getCenter(new THREE.Vector3());
+                paddle.position.copy(socket.worldToLocal(center));
+            }
+            const socketRotation = socket.getWorldQuaternion(new THREE.Quaternion());
+            const rootRotation = root.getWorldQuaternion(new THREE.Quaternion());
+            const outwardTilt = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), 0.8);
+            paddle.quaternion.copy(socketRotation.invert().multiply(rootRotation).multiply(outwardTilt));
+            socket.add(paddle);
         }
 
         function playOpponentAction(actionName, duration = 0.15) {
@@ -20064,11 +20397,7 @@ function cycleTeachLevelQuick() {
                     });
 
                     // 掛接球拍視覺到右翼手腕骨骼 (PaddleSocket.R)
-                    const socketR = findBone(root, 'PaddleSocket.R');
-                    if (socketR) {
-                        const paddleVisual = createCharacterPaddle(0xd9ff5c, 0x1f2937);
-                        socketR.add(paddleVisual);
-                    }
+                    attachRiggedPaddle(root);
 
                     const mixer = new THREE.AnimationMixer(model);
                     const actions = {};
@@ -20126,11 +20455,7 @@ function cycleTeachLevelQuick() {
                         }
                     });
 
-                    const socketR = findBone(root, 'PaddleSocket.R');
-                    if (socketR) {
-                        const paddleVisual = createCharacterPaddle(0xef4444, 0x450a0a);
-                        socketR.add(paddleVisual);
-                    }
+                    attachRiggedPaddle(root);
 
                     const mixer = new THREE.AnimationMixer(model);
                     const actions = {};
@@ -20189,11 +20514,7 @@ function cycleTeachLevelQuick() {
                     });
 
                     // 掛接玩家球拍視覺到右翼手腕骨骼 (PaddleSocket.R)
-                    const socketR = findBone(root, 'PaddleSocket.R');
-                    if (socketR) {
-                        const paddleVisual = createCharacterPaddle(0x2dd4bf, 0x0f766e);
-                        socketR.add(paddleVisual);
-                    }
+                    attachRiggedPaddle(root);
 
                     const mixer = new THREE.AnimationMixer(model);
                     const actions = {};
@@ -20254,11 +20575,7 @@ function cycleTeachLevelQuick() {
                         }
                     });
 
-                    const socketR = findBone(root, 'PaddleSocket.R');
-                    if (socketR) {
-                        const paddleVisual = createCharacterPaddle(0xf59e0b, 0x78350f);
-                        socketR.add(paddleVisual);
-                    }
+                    attachRiggedPaddle(root);
 
                     const mixer = new THREE.AnimationMixer(model);
                     const actions = {};
@@ -20564,8 +20881,8 @@ function cycleTeachLevelQuick() {
         }
 
         function acPaddleTex() {
-            const c = document.createElement('canvas'); c.width = 128; c.height = 160;
-            const ctx = c.getContext('2d');
+            const c = document.createElement('canvas'); c.width = 512; c.height = 640;
+            const ctx = c.getContext('2d'); ctx.scale(4, 4);
             ctx.fillStyle = '#fef3c7'; ctx.fillRect(0, 0, 128, 160);
             ctx.strokeStyle = 'rgba(217, 119, 6, 0.25)'; ctx.lineWidth = 2;
             for (let y = 10; y < 160; y += 18) {
@@ -20579,7 +20896,9 @@ function cycleTeachLevelQuick() {
             ctx.bezierCurveTo(34, 90, 36, 60, 64, 45); ctx.fill();
             ctx.strokeStyle = '#047857'; ctx.lineWidth = 2.5; ctx.beginPath();
             ctx.moveTo(64, 52); ctx.quadraticCurveTo(66, 80, 68, 110); ctx.stroke();
-            const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding;
+            ctx.fillStyle = '#234b3b'; ctx.font = 'bold 15px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText('N-GO', 64, 140);
+            const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; t.anisotropy = 4;
             return t;
         }
 
@@ -20645,7 +20964,7 @@ function cycleTeachLevelQuick() {
             const isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
             try {
                 ren = new THREE.WebGLRenderer({
-                    antialias: !isMobileDevice,
+                    antialias: true,
                     powerPreference: isMobileDevice ? 'default' : 'high-performance',
                     preserveDrawingBuffer: false
                 });
@@ -20656,9 +20975,7 @@ function cycleTeachLevelQuick() {
                     '請改用 Chrome / Edge 最新版,或在瀏覽器設定中開啟硬體加速。</div>';
                 throw e;
             }
-            const mobileMaxPR = isMobileDevice ? 1.4 : 2.0;
-            const initPR = Math.min(window.devicePixelRatio || 1.5, (typeof PERF_PRESETS !== 'undefined' && typeof perfLevel !== 'undefined' && PERF_PRESETS[perfLevel]) ? Math.min(PERF_PRESETS[perfLevel].pixelRatio, mobileMaxPR) : mobileMaxPR);
-            ren.setPixelRatio(initPR);
+            ren.setPixelRatio(getRenderPixelRatio());
             ren.setSize(dims.w, dims.h);
             ren.outputEncoding = THREE.sRGBEncoding;
             ren.toneMapping = THREE.ACESFilmicToneMapping;
@@ -21527,16 +21844,7 @@ function cycleTeachLevelQuick() {
             pGrp.add(pHumanMeshGrp);
 
             pPad = new THREE.Group();
-            pPadVisual = new THREE.Group();
-            const padMat = new THREE.MeshStandardMaterial({ map: acPaddleTex(), roughness: 0.32, metalness: 0.05 });
-            const face = new THREE.Mesh(new THREE.BoxGeometry(0.27, 0.36, 0.035), padMat);
-            face.position.y = 0.18; face.castShadow = true; pPadVisual.add(face);
-            const edge = new THREE.Mesh(new THREE.BoxGeometry(0.29, 0.38, 0.02),
-                new THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.5 }));
-            edge.position.set(0, 0.18, -0.012); pPadVisual.add(edge);
-            const grip = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.16, 0.055),
-                new THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.8 }));
-            grip.position.y = -0.055; pPadVisual.add(grip);
+            pPadVisual = createCharacterPaddle();
             pPad.add(pPadVisual);
             pPad.scale.setScalar(2.175); pGrp.add(pPad); // ★ 球拍放大 1.5 倍 (1.45 * 1.5 = 2.175)
             scene.add(pGrp);
@@ -21764,13 +22072,7 @@ function cycleTeachLevelQuick() {
             gArm = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1, 0.12), gs.clone());
             gArm.castShadow = true; gGrp.add(gArm);
             gPad = new THREE.Group();
-            gPadVisual = new THREE.Group();
-            const gf = new THREE.Mesh(new THREE.BoxGeometry(0.27, 0.36, 0.035),
-                new THREE.MeshStandardMaterial({ color: 0xd9ff5c, roughness: 0.32 }));
-            gf.position.y = 0.18; gf.castShadow = true; gPadVisual.add(gf);
-            const ge = new THREE.Mesh(new THREE.BoxGeometry(0.29, 0.38, 0.02),
-                new THREE.MeshStandardMaterial({ color: 0x24304a, roughness: 0.5 }));
-            ge.position.set(0, 0.18, 0.012); gPadVisual.add(ge);
+            gPadVisual = createCharacterPaddle();
             gPad.add(gPadVisual);
             gPad.scale.setScalar(2.175); gGrp.add(gPad); // ★ 對手球拍同步放大 1.5 倍
             scene.add(gGrp);
@@ -23374,10 +23676,40 @@ function solveArc(fx, fy, fz, tx, tz, out, speedScale) {
             }
             pPad.getWorldPosition(padW);
             if (playerCharacter === 'human') limb(pArm, _b.set(0.2, 1.16, 0.02), _a.set(padX, padY - 0.17, -0.24));
-            if (state === 'CLEARED' && victoryCamTime > 0) {
-                pGrp.position.y = Math.abs(Math.sin(performance.now() * 0.014)) * 0.12;
-                if (pLeftArm) pLeftArm.rotation.z = -0.5 + Math.sin(performance.now() * 0.014) * 0.2;
-            } else if (pLeftArm) pLeftArm.rotation.z = 0.16;
+
+            // 🎭 三位角色正面互動動畫 (發球待機微轉側正面、過關/慶祝完整面向鏡頭，不影響 pPad 物理判定)
+            const nowSec = performance.now() * 0.001;
+            const moveSpd = Math.hypot(playerVel.x, playerVel.z);
+            const isVictoryPose = (state === 'CLEARED' && victoryCamTime > 0);
+            const isServePeek = (state === 'SERVE_READY' && server === 'PLAYER' && moveSpd < 0.15 && !isPlayerSwinging && !webcamActive);
+            const wantFrontHumanY = isVictoryPose
+                ? (Math.PI + Math.sin(nowSec * 3.4) * 0.18)
+                : (isServePeek ? (1.12 + Math.sin(nowSec * 2.2) * 0.12) : 0);
+            const wantFrontRigY = isVictoryPose
+                ? (Math.sin(nowSec * 3.4) * 0.2)
+                : (isServePeek ? (Math.PI - 1.12 + Math.sin(nowSec * 2.2) * 0.12) : Math.PI);
+            const rotRate = Math.min(1, dt * (isServePeek || isVictoryPose ? 6.5 : 14));
+
+            if (pHumanMeshGrp) {
+                pHumanMeshGrp.rotation.y = THREE.MathUtils.lerp(pHumanMeshGrp.rotation.y, wantFrontHumanY, rotRate);
+            }
+            if (playerRiggedGoose && playerRiggedGoose.root) {
+                playerRiggedGoose.root.rotation.y = THREE.MathUtils.lerp(playerRiggedGoose.root.rotation.y, wantFrontRigY, rotRate);
+            }
+            if (playerRiggedSwan && playerRiggedSwan.root) {
+                playerRiggedSwan.root.rotation.y = THREE.MathUtils.lerp(playerRiggedSwan.root.rotation.y, wantFrontRigY, rotRate);
+            }
+
+            if (isVictoryPose) {
+                pGrp.position.y = Math.abs(Math.sin(nowSec * 14)) * 0.14;
+                if (pLeftArm) pLeftArm.rotation.z = -2.35 + Math.sin(nowSec * 12) * 0.35;
+                if (pHead) pHead.rotation.z = Math.sin(nowSec * 7) * 0.08;
+            } else if (isServePeek) {
+                pGrp.position.y = Math.abs(Math.sin(nowSec * 3.8)) * 0.035;
+                if (pLeftArm) pLeftArm.rotation.z = -0.35 + Math.sin(nowSec * 4.5) * 0.18;
+            } else if (pLeftArm) {
+                pLeftArm.rotation.z = 0.16;
+            }
             if (state === 'SERVE_READY' && server === 'PLAYER') PH.reset(padW.x - 0.22, Math.max(BALL_R, padW.y + 0.1), padW.z - 0.06);
         }
         function planShot() {
@@ -24993,10 +25325,7 @@ function handleStageResize() {
     cam.updateProjectionMatrix();
     BALL_VIS.base = cfg.ballScale;
     BALL_VIS.glow = cfg.glowScale;
-    const isMobile = (typeof isMobileDevice !== 'undefined') ? isMobileDevice : /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
-    const maxPR = isMobile ? 1.4 : 2.0;
-    const curPR = (typeof PERF_PRESETS !== 'undefined' && typeof perfLevel !== 'undefined' && PERF_PRESETS[perfLevel]) ? Math.min(PERF_PRESETS[perfLevel].pixelRatio, maxPR) : maxPR;
-    ren.setPixelRatio(Math.min(window.devicePixelRatio || 1.5, curPR));
+    ren.setPixelRatio(getRenderPixelRatio());
     ren.setSize(dims.w, dims.h);
 }
 

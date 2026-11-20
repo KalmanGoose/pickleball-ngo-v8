@@ -300,7 +300,17 @@
     <!-- ══════ 音效與觸覺震動設定 ══════ -->
     <div id="audio-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="audio-dialog-title" style="display:none;">
         <div class="modal-card">
-            <h2 id="audio-dialog-title">🎶 音效與震動設定</h2>
+            <h2 id="audio-dialog-title">🎨 畫質、音效與震動</h2>
+            <section class="phone-quality-settings" aria-label="遊戲畫質">
+                <strong>畫面畫質與效能檔位（已啟用抗鋸齒）</strong>
+                <div class="phone-quality-options">
+                    <button type="button" data-perf="low" onclick="applyPerfPreset('low')">低・節能</button>
+                    <button type="button" data-perf="medium" onclick="applyPerfPreset('medium')">中・平衡</button>
+                    <button type="button" data-perf="high" onclick="applyPerfPreset('high')">高・清晰</button>
+                    <button type="button" data-perf="ultra" onclick="applyPerfPreset('ultra')">極致超清</button>
+                </div>
+                <small>預設為「高・清晰」（DPR 最高 2x + WebGL 抗鋸齒），手機發熱時可改「中・平衡」或「低・節能」。</small>
+            </section>
             <p>設定會自動記憶到本機，打球更具手感。</p>
             <div class="input-group">
                 <div class="pref-row">
@@ -1048,7 +1058,7 @@ dω/dt = -β_perforated · ω   (多孔角動量自旋衰減)</div>
                             <div class="drawer-header-left">
                                 <span class="drawer-badge" style="background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;">神經 02</span>
                                 <div class="drawer-title-group">
-                                    <h4 class="drawer-title">⚡ 巨大纖維逃逸系統 GFS <span style="font-size:12px;color:#fcd34d;">(aka 捷安特腳踏車神經 🚲)</span></h4>
+                                    <h4 class="drawer-title">⚡ 巨大纖維逃逸系統 GFS <span style="font-size:12px;color:#b45309;font-weight:800;">(aka 捷安特腳踏車神經 🚲)</span></h4>
                                     <div class="drawer-sub">Giant Fiber 毫秒級極速突觸反射（註：aka 捷安特純屬白痴諧音爛梗，開玩笑亂講ㄉ不要寫在期末考卷上）</div>
                                 </div>
                             </div>
@@ -1466,7 +1476,12 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
                 <!-- 🍃 微風落櫻花瓣與飄逸夏葉動態粒子層 -->
                 <canvas id="hub-particle-canvas"></canvas>
 
-                <button type="button" id="lake-goose-dancer" aria-label="湖畔匹克鵝閃身步" onclick="toast('🪿 湖畔閃身步', '跟著匹克鵝側步、轉肩、擺手！')"><span id="lake-goose-portrait"></span><span class="lake-goose-label">匹克鵝 · 閃身步</span></button>
+                <button type="button" id="lake-goose-dancer" aria-label="湖畔角色正面動畫" onclick="if(window.HubSandbox&&HubSandbox.cheerLakeCharacter)HubSandbox.cheerLakeCharacter()"><span id="lake-goose-portrait"></span><span class="lake-goose-label" id="lake-char-label">匹克鵝 · 閃身步</span></button>
+                <div class="lake-char-switcher" id="lake-char-switcher" role="group" aria-label="切換湖畔展示角色">
+                    <button type="button" class="lake-char-btn" data-lake-char="human" onclick="if(window.HubSandbox&&HubSandbox.setLakeCharacter)HubSandbox.setLakeCharacter('human')" title="興大球員">👦</button>
+                    <button type="button" class="lake-char-btn on" data-lake-char="goose" onclick="if(window.HubSandbox&&HubSandbox.setLakeCharacter)HubSandbox.setLakeCharacter('goose')" title="匹克鵝">🪿</button>
+                    <button type="button" class="lake-char-btn" data-lake-char="swan" onclick="if(window.HubSandbox&&HubSandbox.setLakeCharacter)HubSandbox.setLakeCharacter('swan')" title="黑天鵝">🦢</button>
+                </div>
 
                 <!-- 👆 新手導覽：角色指引開啟「闖關歷險」 -->
                 <div id="hub-dock-guide-bubble" class="hub-dock-guide-bubble" hidden role="status" aria-live="polite">
@@ -1704,7 +1719,7 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
                         </button>
                         <button class="nook-app phone-app" onclick="toggleNookPhone(false); openAudioModal();">
                             <div class="nook-app-icon phone-app-icon app-settings">🎶</div>
-                            <span class="nook-app-label phone-app-label">音效震動</span>
+                            <span class="nook-app-label phone-app-label">畫質音效</span>
                         </button>
                     </div>
 
@@ -2047,7 +2062,7 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
                     <button id="subbar-joy-btn" onclick="cycleJoySpeedQuick()" style="color:var(--ok);">🕹️ 搖桿: 標準</button>
                     <button id="subbar-movement-btn" onclick="toggleMovementMode()" style="color:var(--ok);">🏃 走位: 自動</button>
                     <button id="subbar-net-assist-btn" onclick="toggleNetAssist()" style="color:var(--dim);">🏃 網前助攻: 關</button>
-                    <button id="subbar-perf-btn" onclick="cyclePerfQuick()">⚡ 畫質: 原生高畫質</button>
+                    <button id="subbar-perf-btn" onclick="cyclePerfQuick()">⚡ 畫質: 清晰</button>
                     <button id="subbar-phys-btn" onclick="togglePhysicsMode()" style="color:#c7d2fe;">🌪️ 物理: ⚡極速</button>
                     <button id="subbar-snn-btn" onclick="toggleSnnHud()" style="color:#c084fc;">⚡ 示波器: 開</button>
                 </div>

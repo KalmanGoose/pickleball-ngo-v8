@@ -401,12 +401,49 @@
         }
     }
 
+    const LAKE_CHAR_META = {
+        human: { label: '興大球員 · 陽光揮拍', toastTitle: '👦 興大球員正面打招呼！', toastMsg: '雙手熱身揮拍中，準備點「闖關歷險」上場開打！' },
+        goose: { label: '匹克鵝 · 正面閃身步', toastTitle: '🪿 匹克鵝正面閃身步！', toastMsg: '嘎！跟著匹克鵝側步、轉肩、擺手一起暖身！' },
+        swan:  { label: '黑天鵝 · 冠軍展翅舞', toastTitle: '🦢 黑天鵝正面展翅應援！', toastMsg: '黑金冠軍氣勢全開，準備稱霸中興湖水上球場！' }
+    };
+    let currentLakeChar = 'goose';
+
+    function mountLakeCharacter(charType) {
+        const type = LAKE_CHAR_META[charType] ? charType : 'goose';
+        currentLakeChar = type;
+        if (lakeGoose) { lakeGoose.destroy(); lakeGoose = null; }
+        const portrait = document.getElementById('lake-goose-portrait');
+        if (portrait && window.NGoCharacterPortrait) {
+            lakeGoose = new window.NGoCharacterPortrait(portrait, { dance: true, character: type });
+        }
+        const labelEl = document.getElementById('lake-char-label');
+        if (labelEl) labelEl.textContent = LAKE_CHAR_META[type].label;
+        document.querySelectorAll('#lake-char-switcher .lake-char-btn').forEach(btn => {
+            btn.classList.toggle('on', btn.dataset.lakeChar === type);
+        });
+    }
+
+    function setLakeCharacter(charType) {
+        mountLakeCharacter(charType);
+        if (lakeGoose && lakeGoose.triggerCheer) lakeGoose.triggerCheer();
+    }
+
+    function cheerLakeCharacter() {
+        const meta = LAKE_CHAR_META[currentLakeChar] || LAKE_CHAR_META.goose;
+        if (lakeGoose && lakeGoose.triggerCheer) lakeGoose.triggerCheer();
+        if (typeof toast === 'function') toast(meta.toastTitle, meta.toastMsg);
+    }
+
     // 啟動沙盤動態
     function start() {
         if (isRunning) return;
         refreshDomCache();
-        const portrait = document.getElementById('lake-goose-portrait');
-        if (portrait && window.NGoCharacterPortrait && !lakeGoose) lakeGoose = new window.NGoCharacterPortrait(portrait, { dance: true });
+        const preferred = (typeof window.playerCharacter === 'string' && LAKE_CHAR_META[window.playerCharacter])
+            ? window.playerCharacter
+            : (typeof localStorage !== 'undefined' && LAKE_CHAR_META[localStorage.getItem('nchu_player_char')])
+                ? localStorage.getItem('nchu_player_char')
+                : 'goose';
+        mountLakeCharacter(preferred);
 
         pCanvas = document.getElementById('hub-particle-canvas');
         pCtx = pCanvas ? pCanvas.getContext('2d') : null;
@@ -449,7 +486,9 @@
         stop: stop,
         isRunning: function() { return isRunning; },
         interactActor: interactActor,
-        startFoxMotionPractice: startFoxMotionPractice
+        startFoxMotionPractice: startFoxMotionPractice,
+        setLakeCharacter: setLakeCharacter,
+        cheerLakeCharacter: cheerLakeCharacter
     };
 
 })(window);

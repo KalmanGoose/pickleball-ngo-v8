@@ -4117,6 +4117,14 @@
 #char-picker-modal .character-picker-heading p,#char-picker-modal .character-picker-note{color:#627357!important}
 #char-picker-confirm{background:#3d6848;color:#fffbed;border:0;border-radius:14px;padding:14px;font-size:15px;font-weight:800;box-shadow:none}
 
+/* ═══ 手機畫質設定面板 (Mobile Quality Presets) ═══ */
+#audio-modal .modal-card{max-height:88dvh;overflow-y:auto}
+.phone-quality-settings{padding:12px;margin:12px 0;background:#edf2e1;border:1px solid #c4d1af;border-radius:14px;color:#111827;text-align:left}
+.phone-quality-options{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.phone-quality-options button{border:1px solid #b9cba6;border-radius:10px;background:#fffdf3;padding:10px 2px;color:#1f2937;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+#audio-modal [data-perf].on{background:#365f44;color:#fffbed;border-color:#365f44}
+.phone-quality-settings small{font-size:11px;color:#374151}
+
 /* ═══ 選擇頭像抽屜 (Avatar Drawer) ═══ */
 .avatar-drawer-toggle{display:flex;align-items:center;gap:12px;width:100%;padding:10px 14px;border-radius:12px;border:1px solid var(--line,rgba(255,255,255,0.16));background:rgba(255,255,255,0.06);color:var(--txt,#f8fafc);cursor:pointer;text-align:left;font:inherit;transition:background .18s ease,border-color .18s ease}
 .avatar-drawer-toggle:hover{background:rgba(255,255,255,0.1)}
@@ -4128,14 +4136,23 @@
 .avatar-drawer.open .avatar-drawer-chevron{transform:rotate(180deg)}
 .avatar-drawer-body{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .26s ease,opacity .2s ease,margin-top .2s ease}
 .avatar-drawer.open .avatar-drawer-body{max-height:260px;opacity:1;margin-top:8px}
-#profile-modal .avatar-drawer-toggle{background:#fff8eb;border:1.5px solid #e2d1b3;color:#3d2b1f}
+#profile-modal .avatar-drawer-toggle{background:#fff8eb;border:1.5px solid #e2d1b3;color:#111827}
 #profile-modal .avatar-drawer-toggle:hover{background:#fdf1d8;border-color:#c9a97c}
 #profile-modal .avatar-drawer-preview{background:#f3e5cc}
-#profile-modal .avatar-drawer-sub{color:#85694f}
+#profile-modal .avatar-drawer-sub{color:#374151}
 
 /* ═══ 角色卡片真實照片槽位 ═══ */
 .character-icon{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;overflow:hidden;flex-shrink:0;background:#f2f5e7;border:1.5px solid #d5dec3}
 .character-icon img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ═══ 湖畔 3 角色正面展示切換列 ═══ */
+.lake-char-switcher{position:absolute;left:44%;top:62.5%;transform:translateX(-50%);z-index:16;display:flex;gap:4px;background:rgba(255,251,234,0.92);border:1.5px solid #c9d3b5;border-radius:999px;padding:3px 5px;box-shadow:0 3px 10px rgba(27,67,50,0.22)}
+.lake-char-btn{border:0;background:transparent;width:26px;height:26px;border-radius:999px;font-size:14px;cursor:pointer;display:grid;place-items:center;padding:0;transition:transform .15s ease,background .15s ease}
+.lake-char-btn:hover{background:rgba(82,123,70,0.14);transform:scale(1.08)}
+.lake-char-btn.on{background:#365f44;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
+.passport-char-tabs{display:flex;gap:4px;flex-wrap:wrap}
+.passport-char-tabs .btn-avatar-mode{cursor:pointer;border:1px solid #c9d3b5;background:#f4efe2;color:#1f2937;padding:4px 9px;border-radius:999px;font-size:11.5px;font-weight:700}
+.passport-char-tabs .btn-avatar-mode.on{background:#2e7d32;color:#ffffff;border-color:#2e7d32}
 
 /* ═══ 中興湖新手導覽：手指頭與角色指引 ═══ */
 #pin-dock.guide-highlight{z-index:32!important}
@@ -4144,14 +4161,45 @@
 .hub-dock-guide-finger[hidden]{display:none!important}
 .guide-finger-emoji{font-size:30px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.45))}
 .guide-finger-tag{white-space:nowrap;font-size:11px;font-weight:800;color:#fff;background:#ea580c;padding:3px 9px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,0.3)}
-.hub-dock-guide-bubble{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:min(88%,320px);background:#fffef5;border:2px solid #527b46;border-radius:18px;padding:12px 14px;box-shadow:0 12px 28px rgba(23,44,31,0.34);z-index:34;color:#2e4733;animation:hubGuidePop .28s cubic-bezier(.22,1,.36,1)}
+.hub-dock-guide-bubble{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:min(88%,320px);background:#fffef5;border:2px solid #527b46;border-radius:18px;padding:12px 14px;box-shadow:0 12px 28px rgba(23,44,31,0.34);z-index:34;color:#111827;animation:hubGuidePop .28s cubic-bezier(.22,1,.36,1)}
 .hub-dock-guide-bubble[hidden]{display:none!important}
 .hub-guide-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
-.hub-guide-badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#274a31}
-.hub-guide-close{border:0;background:#e8ecd9;color:#375639;width:24px;height:24px;border-radius:999px;font-size:12px;font-weight:800;cursor:pointer;display:grid;place-items:center}
-.hub-guide-msg{margin:0 0 10px;font-size:12.5px;line-height:1.5;font-weight:600;color:#3b523f}
+.hub-guide-badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#111827}
+.hub-guide-close{border:0;background:#e8ecd9;color:#1f2937;width:24px;height:24px;border-radius:999px;font-size:12px;font-weight:800;cursor:pointer;display:grid;place-items:center}
+.hub-guide-msg{margin:0 0 10px;font-size:12.5px;line-height:1.5;font-weight:600;color:#111827}
 .hub-guide-cta{width:100%;border:0;border-radius:12px;padding:9px 12px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font:inherit;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(234,88,12,0.35)}
 .hub-guide-cta:active{transform:scale(0.98)}
 @keyframes hubFingerBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(9px)}}
 @keyframes hubDockPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
 @keyframes hubGuidePop{from{opacity:0;transform:translateX(-50%) translateY(10px) scale(0.95)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+
+/* ═══ 📖 所有科普與規則解說文字高對比黑字強化 (High-Contrast Ink) ═══ */
+#rules-modal .modal-card{background:#fbf8f0!important;border:2px solid #dec8a7!important;color:#111827!important}
+#rules-modal .rules-header{border-bottom:1.5px solid #dec8a7}
+#rules-modal .rules-header h2{color:#1b4332!important}
+#rules-modal .rules-header .btn{background:#f0e6d6;color:#111827;border:1px solid #d4bea0}
+#rules-modal .tabs .tab{color:#1f2937;background:#f0e6d6;border:1px solid #dec8a7;font-weight:700}
+#rules-modal .tabs .tab.on{background:#2e7d32;color:#ffffff;border-color:#2e7d32}
+#rules-modal .rule-card{background:#ffffff;border:1.5px solid #dec8a7;box-shadow:0 2px 6px rgba(43,29,20,0.06)}
+#rules-modal .rule-card:hover{border-color:#2e7d32}
+#rules-modal .rule-num{background:#2e7d32;color:#ffffff}
+#rules-modal .rule-title{color:#111827!important}
+#rules-modal .rule-desc,#rules-modal p{color:#111827!important;font-size:13.5px!important;line-height:1.7!important}
+#rules-modal .rule-desc strong,#rules-modal .rule-desc b,#rules-modal .science-drawer strong,#rules-modal .science-drawer b{color:#000000!important;font-weight:800}
+#rules-modal .drawer-title{color:#111827!important}
+#rules-modal .drawer-sub{color:#374151!important}
+#rules-modal .drawer-content{color:#111827!important}
+#rules-modal .physics-analogy{background:#eef8e8;border-color:#a5d6a7;color:#111827!important;font-size:12.5px!important;line-height:1.7!important}
+#rules-modal .physics-formula{color:#0f3d16!important;background:#f3ede0;border-color:#d4bea0}
+#rules-modal .science-box,#rules-modal .science-box-gold{color:#111827!important}
+#rules-modal .science-box div,#rules-modal .science-box-gold div{color:#111827}
+#rules-modal .citation-item{color:#111827!important}
+#rules-modal .citation-item span{color:#374151!important}
+#rules-modal .citation-item b{color:#0f3d16!important}
+#rules-modal .citation-item i{color:#92400e!important}
+#rules-modal .rules-footer-bar{border-top:1.5px solid #dec8a7}
+#rules-modal .rules-source-link{color:#1b5e20!important;font-weight:700}
+#community-modal .modal-card{background:#fbf8f0!important;color:#111827!important}
+#community-modal p{color:#111827!important}
+#profile-modal .profile-subtitle{color:#374151!important}
+#audio-modal .modal-card p{color:#cbd5e1}
