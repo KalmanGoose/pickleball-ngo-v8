@@ -4178,7 +4178,8 @@
 #rules-modal .rules-header{border-bottom:1.5px solid #dec8a7}
 #rules-modal .rules-header h2{color:#1b4332!important}
 #rules-modal .rules-header .btn{background:#f0e6d6;color:#111827;border:1px solid #d4bea0}
-#rules-modal .tabs .tab{color:#1f2937;background:#f0e6d6;border:1px solid #dec8a7;font-weight:700}
+#rules-modal .tabs{display:flex;flex-wrap:wrap;gap:6px}
+#rules-modal .tabs .tab{color:#1f2937;background:#f0e6d6;border:1px solid #dec8a7;font-weight:700;flex:1 1 calc(50% - 6px);min-width:130px;padding:8px 10px;border-radius:10px;font-size:12px}
 #rules-modal .tabs .tab.on{background:#2e7d32;color:#ffffff;border-color:#2e7d32}
 #rules-modal .rule-card{background:#ffffff;border:1.5px solid #dec8a7;box-shadow:0 2px 6px rgba(43,29,20,0.06)}
 #rules-modal .rule-card:hover{border-color:#2e7d32}

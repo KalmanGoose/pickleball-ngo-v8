@@ -7782,7 +7782,8 @@ body.distant-hud-active #subbar-ai-btn {
 #rules-modal .rules-header{border-bottom:1.5px solid #dec8a7}
 #rules-modal .rules-header h2{color:#1b4332!important}
 #rules-modal .rules-header .btn{background:#f0e6d6;color:#111827;border:1px solid #d4bea0}
-#rules-modal .tabs .tab{color:#1f2937;background:#f0e6d6;border:1px solid #dec8a7;font-weight:700}
+#rules-modal .tabs{display:flex;flex-wrap:wrap;gap:6px}
+#rules-modal .tabs .tab{color:#1f2937;background:#f0e6d6;border:1px solid #dec8a7;font-weight:700;flex:1 1 calc(50% - 6px);min-width:130px;padding:8px 10px;border-radius:10px;font-size:12px}
 #rules-modal .tabs .tab.on{background:#2e7d32;color:#ffffff;border-color:#2e7d32}
 #rules-modal .rule-card{background:#ffffff;border:1.5px solid #dec8a7;box-shadow:0 2px 6px rgba(43,29,20,0.06)}
 #rules-modal .rule-card:hover{border-color:#2e7d32}
@@ -8404,6 +8405,7 @@ body.distant-hud-active #subbar-ai-btn {
                 <button type="button" class="tab on" id="rtab-btn-rules" onclick="switchRulesModalTab('rules')">📖 2026 官方競賽手冊</button>
                 <button type="button" class="tab" id="rtab-btn-physics" onclick="switchRulesModalTab('physics')">🌪️ 流體力學與旋球科普</button>
                 <button type="button" class="tab" id="rtab-btn-fly" onclick="switchRulesModalTab('fly')">🪰 普林斯頓果蠅大腦 (Nature 2024)</button>
+                <button type="button" class="tab" id="rtab-btn-ai" onclick="switchRulesModalTab('ai')">🤖 自主 AI 揭露 (Vibe Coding)</button>
             </div>
 
             <!-- 頁籤 1: 官方競賽規則 -->
@@ -8954,6 +8956,104 @@ I_syn(t) = w_syn · x · u · (dθ/dt)</div>
                                     <b>[4] Tsodyks, M. V., & Markram, H. (1997).</b> <i>The neural code between neocortical pyramidal neurons depends on neurotransmitter release probability.</i> PNAS, 94(2), 719–723. <span style="color:var(--dim);">（短時突觸抑制與神經遞質釋放動力學）</span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 頁籤 4: 自主 AI 揭露與 Vibe Coding 協作紀實 -->
+            <div id="rtab-pane-ai" class="rules-tab-pane" style="display:none;">
+                <div class="rules-grid">
+                    <!-- 揭露抽屜 1: Vibe Coding 核心聲明與三大倫理原則 (預設展開) -->
+                    <div class="science-drawer open" id="drawer-ai-1" style="grid-column:1/-1;">
+                        <div class="drawer-header" onclick="toggleScienceDrawer('drawer-ai-1')">
+                            <div class="drawer-header-left">
+                                <span class="drawer-badge" style="background:#1b4332;color:#ffffff;">自主揭露 01</span>
+                                <div class="drawer-title-group">
+                                    <h4 class="drawer-title">🤖 本專案採行 Vibe Coding 人機協作開發模式</h4>
+                                    <div class="drawer-sub">誠實揭露生成式 AI 使用範圍、人類主體性與校園倫理實踐</div>
+                                </div>
+                            </div>
+                            <div class="drawer-toggle-btn">▴ 收合內容</div>
+                        </div>
+                        <div class="drawer-content">
+                            <p class="rule-desc">
+                                <strong>《匹克球 N-GO》</strong>由國立中興大學跨院系學生學習社群發起，採行 <strong>Vibe Coding（自然語言與規格驅動之 AI 協作開發）</strong>模式打造。我們主動在遊戲內公開完整 AI 協作歷程，不虛飾純手工工程專長，讓玩家、師長與評審都能清楚檢視人機分工邊界。
+                            </p>
+                            <div class="physics-analogy">
+                                ⚖️ <b>AI 倫理思維起源與三大開發原則：</b><br>
+                                承襲團隊法律系成員修習臺灣大專院校人工智慧學程聯盟（TAICA）「人工智慧倫理」課程（中興大學法律學系蔡惠芳教授擔任校內協同教師）之思辨，團隊確立三項核心準則：<br>
+                                • <b>主體性原則</b>：校園無場地與無課程痛點、推廣策略、USA Pickleball 規則邊界、物理規格與實機手感體驗，皆由人類團隊自主調研決定。<br>
+                                • <b>透明度原則</b>：誠實揭露程式碼由多個生成式 AI 工具輔助撰寫與交叉審查，並公開紀錄修正過程。<br>
+                                • <b>隱私原則</b>：體感鏡頭影像 100% 於使用者手機／瀏覽器本機即時運算，絕不上傳雲端。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 揭露抽屜 2: 歷來多模型 AI 協作與交叉審查歷程 (預設展開) -->
+                    <div class="science-drawer open" id="drawer-ai-2" style="grid-column:1/-1;">
+                        <div class="drawer-header" onclick="toggleScienceDrawer('drawer-ai-2')">
+                            <div class="drawer-header-left">
+                                <span class="drawer-badge" style="background:#0284c7;color:#ffffff;">協作歷程 02</span>
+                                <div class="drawer-title-group">
+                                    <h4 class="drawer-title">🤝 歷來多模型 AI 分工與交叉審查紀錄 (Multi-AI Cross-Review)</h4>
+                                    <div class="drawer-sub">透過不同 AI 模型接力開發與互相審查，搭配人類實機驗證確保品質</div>
+                                </div>
+                            </div>
+                            <div class="drawer-toggle-btn">▴ 收合內容</div>
+                        </div>
+                        <div class="drawer-content">
+                            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:10px;margin-top:6px;">
+                                <div class="science-box" style="margin-bottom:0;">
+                                    <div style="font-weight:900;color:#1b5e20;font-size:13px;margin-bottom:4px;">🚀 Google Antigravity（AGY / Gemini 系列）</div>
+                                    <div style="font-size:12px;line-height:1.65;">
+                                        <b>定位：核心 Vibe Coding 編程主力</b><br>
+                                        依團隊提供的物理公式、規則與實機回饋，協同撰寫 Three.js 3D 水上球場、2.5D 中興湖沙盤、Swept CCD 連續碰撞、MediaPipe 33 點體感、FlyWire 果蠅神經對戰 AI、21 骨骼 GLB 角色動畫、99 項自動化回歸測試與單檔打包發布。
+                                    </div>
+                                </div>
+                                <div class="science-box" style="margin-bottom:0;">
+                                    <div style="font-weight:900;color:#92400e;font-size:13px;margin-bottom:4px;">🔍 Anthropic Claude（Claude Opus / Web）</div>
+                                    <div style="font-size:12px;line-height:1.65;">
+                                        <b>定位：初期架構梳理與 6 輪深度 Code Review</b><br>
+                                        協助早期技術文獻探索與架構規劃；並對全專案進行 6 輪代碼審查，抓出「短滑動曲球方向反轉」、「第三桿放短死碼」、「好友 API 權限」與「GPU 資源未釋放」等關鍵漏洞，再由人類逐行核實並排除審查誤報。
+                                    </div>
+                                </div>
+                                <div class="science-box" style="margin-bottom:0;">
+                                    <div style="font-weight:900;color:#1d4ed8;font-size:13px;margin-bottom:4px;">⚙️ OpenAI ChatGPT / GPT-4o / Codex</div>
+                                    <div style="font-size:12px;line-height:1.65;">
+                                        <b>定位：規則語句精簡、真值審查與視覺分支實作</b><br>
+                                        協助將官方規則改寫為易讀提示；執行嚴格工程與資料真值審查（撤回未經人工驗證之動作樣本宣稱、杜絕訓練測試集洩漏）；實作每日選角、對手體力條、圓角 N-GO 球拍與手機 WebGL 抗鋸齒四檔畫質。
+                                    </div>
+                                </div>
+                                <div class="science-box" style="margin-bottom:0;">
+                                    <div style="font-weight:900;color:#7e22ce;font-size:13px;margin-bottom:4px;">🧑‍🎓 中興大學學生團隊（人類最終把關）</div>
+                                    <div style="font-size:12px;line-height:1.65;">
+                                        <b>定位：產品決策、實機測試與跨模型驗證</b><br>
+                                        所有手機瀏覽器實戰手感、上滑遠球／下滑丁克球操作直覺、中興湖校園細節、公開學術論文真偽二查與最終發布決策，皆由人類團隊親自把關驗證。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 揭露抽屜 3: 誠實邊界聲明 -->
+                    <div class="science-drawer" id="drawer-ai-3" style="grid-column:1/-1;">
+                        <div class="drawer-header" onclick="toggleScienceDrawer('drawer-ai-3')">
+                            <div class="drawer-header-left">
+                                <span class="drawer-badge" style="background:#5d4037;color:#ffffff;">誠信聲明 03</span>
+                                <div class="drawer-title-group">
+                                    <h4 class="drawer-title">🧪 技術簡化與測試透明度聲明</h4>
+                                    <div class="drawer-sub">清楚區分「遊戲化簡化模擬」與「嚴格科學實驗」</div>
+                                </div>
+                            </div>
+                            <div class="drawer-toggle-btn">▾ 點擊展開</div>
+                        </div>
+                        <div class="drawer-content">
+                            <p class="rule-desc">
+                                • <b>物理與視覺取捨</b>：空氣動力學計算使用真實球徑 74 mm，碰撞與 3D 顯示球體為配合手機可見度適度放大，反彈係數以實玩手感調校。<br>
+                                • <b>角色動作與體力數值</b>：中興湖角色舞步為程式化風格動畫，對手體力條為遊戲平衡設計，皆非人體生理或逐幀動作捕捉數據。<br>
+                                • <b>自動化防退化機制</b>：每次 Vibe Coding 修改皆透過 <code>node scripts/self-test.js</code>（99 項語法、物理、規則與資安測試）驗證通過後才編譯上線。
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -12229,14 +12329,17 @@ if (typeof window !== "undefined") {
             const isRules = (tab === 'rules' || !tab);
             const isPhysics = (tab === 'physics');
             const isFly = (tab === 'fly');
+            const isAI = (tab === 'ai');
 
             const btnRules = document.getElementById('rtab-btn-rules');
             const btnPhys = document.getElementById('rtab-btn-physics');
             const btnFly = document.getElementById('rtab-btn-fly');
+            const btnAI = document.getElementById('rtab-btn-ai');
 
             const paneRules = document.getElementById('rtab-pane-rules');
             const panePhys = document.getElementById('rtab-pane-physics');
             const paneFly = document.getElementById('rtab-pane-fly');
+            const paneAI = document.getElementById('rtab-pane-ai');
 
             const titleEl = document.getElementById('rules-modal-main-title');
             const srcLink = document.getElementById('rules-modal-source-link');
@@ -12244,13 +12347,17 @@ if (typeof window !== "undefined") {
             if (btnRules) btnRules.classList.toggle('on', isRules);
             if (btnPhys) btnPhys.classList.toggle('on', isPhysics);
             if (btnFly) btnFly.classList.toggle('on', isFly);
+            if (btnAI) btnAI.classList.toggle('on', isAI);
 
             if (paneRules) paneRules.style.display = isRules ? 'block' : 'none';
             if (panePhys) panePhys.style.display = isPhysics ? 'block' : 'none';
             if (paneFly) paneFly.style.display = isFly ? 'block' : 'none';
+            if (paneAI) paneAI.style.display = isAI ? 'block' : 'none';
 
             if (titleEl) {
-                if (isFly) {
+                if (isAI) {
+                    titleEl.innerHTML = '🤖 自主 AI 揭露與 Vibe Coding 協作紀實';
+                } else if (isFly) {
                     titleEl.innerHTML = '🪰 普林斯頓 FlyWire 果蠅神經大腦文獻 (Nature 2024)';
                 } else if (isPhysics) {
                     titleEl.innerHTML = '🌪️ 匹克球流體力學與馬格努斯效應科普';
@@ -12259,7 +12366,10 @@ if (typeof window !== "undefined") {
                 }
             }
             if (srcLink) {
-                if (isFly) {
+                if (isAI) {
+                    srcLink.href = 'https://github.com/KalmanGoose/pickleball-ngo-v8';
+                    srcLink.innerHTML = '🌐 檢視 GitHub 開源提交紀錄與 Vibe Coding 歷程 ↗';
+                } else if (isFly) {
                     srcLink.href = 'https://flywire.ai/';
                     srcLink.innerHTML = '🌐 查閱 Princeton FlyWire Nature 2024 全腦連接組 ↗';
                 } else if (isPhysics) {

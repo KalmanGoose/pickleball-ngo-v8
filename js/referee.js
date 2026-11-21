@@ -235,14 +235,17 @@
             const isRules = (tab === 'rules' || !tab);
             const isPhysics = (tab === 'physics');
             const isFly = (tab === 'fly');
+            const isAI = (tab === 'ai');
 
             const btnRules = document.getElementById('rtab-btn-rules');
             const btnPhys = document.getElementById('rtab-btn-physics');
             const btnFly = document.getElementById('rtab-btn-fly');
+            const btnAI = document.getElementById('rtab-btn-ai');
 
             const paneRules = document.getElementById('rtab-pane-rules');
             const panePhys = document.getElementById('rtab-pane-physics');
             const paneFly = document.getElementById('rtab-pane-fly');
+            const paneAI = document.getElementById('rtab-pane-ai');
 
             const titleEl = document.getElementById('rules-modal-main-title');
             const srcLink = document.getElementById('rules-modal-source-link');
@@ -250,13 +253,17 @@
             if (btnRules) btnRules.classList.toggle('on', isRules);
             if (btnPhys) btnPhys.classList.toggle('on', isPhysics);
             if (btnFly) btnFly.classList.toggle('on', isFly);
+            if (btnAI) btnAI.classList.toggle('on', isAI);
 
             if (paneRules) paneRules.style.display = isRules ? 'block' : 'none';
             if (panePhys) panePhys.style.display = isPhysics ? 'block' : 'none';
             if (paneFly) paneFly.style.display = isFly ? 'block' : 'none';
+            if (paneAI) paneAI.style.display = isAI ? 'block' : 'none';
 
             if (titleEl) {
-                if (isFly) {
+                if (isAI) {
+                    titleEl.innerHTML = '🤖 自主 AI 揭露與 Vibe Coding 協作紀實';
+                } else if (isFly) {
                     titleEl.innerHTML = '🪰 普林斯頓 FlyWire 果蠅神經大腦文獻 (Nature 2024)';
                 } else if (isPhysics) {
                     titleEl.innerHTML = '🌪️ 匹克球流體力學與馬格努斯效應科普';
@@ -265,7 +272,10 @@
                 }
             }
             if (srcLink) {
-                if (isFly) {
+                if (isAI) {
+                    srcLink.href = 'https://github.com/KalmanGoose/pickleball-ngo-v8';
+                    srcLink.innerHTML = '🌐 檢視 GitHub 開源提交紀錄與 Vibe Coding 歷程 ↗';
+                } else if (isFly) {
                     srcLink.href = 'https://flywire.ai/';
                     srcLink.innerHTML = '🌐 查閱 Princeton FlyWire Nature 2024 全腦連接組 ↗';
                 } else if (isPhysics) {
